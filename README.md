@@ -1,10 +1,10 @@
 # flutter_opencv
 
-[![Wallpaper Manager](https://i.imgur.com/A2JbAq4.jpg)](https://pub.dartlang.org/packages/opencv)
-
 A Flutter plug-in providing a binding to OpenCV-4.x.
 
 [![Pub](https://img.shields.io/pub/v/opencv.svg)](https://pub.dartlang.org/packages/opencv)
+
+[![Flutter OpenCV](https://i.imgur.com/A2JbAq4.jpg)](https://pub.dartlang.org/packages/opencv)
 
 ## Usage
 
@@ -27,7 +27,7 @@ import 'package:opencv/opencv.dart';
 ### Example
 
 #### Basic Usage
-Since this is not a Widget, you have to create WallpaperManager constructors from inside an async function, which is a Future that returns a String output specifying success/failure.
+String output specifying success/failure.
 ```dart
 String path = "/path/to/file/on/disk";
 ```
@@ -47,8 +47,8 @@ String url = "";
 
 ## Getting started
 
-### With Wallpaper Manager
-See the `example` directory for a complete sample app using Wallpaper Manager.
+### With Flutter OpenCV
+See the `example` directory for a complete sample app using Flutter OpenCV.
 
 ### With Flutter
 For help getting started with Flutter, view the online [documentation](https://flutter.io/).
