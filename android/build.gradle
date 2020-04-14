@@ -1,0 +1,41 @@
+group 'com.mulgundkar.opencv4'
+version '1.0'
+
+buildscript {
+    repositories {
+        google()
+        jcenter()
+    }
+
+    dependencies {
+        classpath 'com.android.tools.build:gradle:3.5.0'
+    }
+}
+
+rootProject.allprojects {
+    repositories {
+        google()
+        jcenter()
+    }
+}
+
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion 28
+
+    defaultConfig {
+        minSdkVersion 21
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+    lintOptions {
+        disable 'InvalidPackage'
+    }
+}
+
+dependencies {
+    //compile project(path: ':opencv')
+    //implementation project(path:':opencv', configuration: 'default')
+    implementation 'com.quickbirdstudios:opencv:4.1.0'
+    //implementation 'com.mulgundkar:opencv_android:4.1.0-contrib'
+}
