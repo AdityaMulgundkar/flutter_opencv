@@ -1,5 +1,3 @@
-import 'dart:typed_data';
-
 class Size{
   double x;
   double y;

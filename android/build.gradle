@@ -1,4 +1,4 @@
-group 'com.mulgundkar.opencv4'
+group 'com.mulgundkar.opencv'
 version '1.0'
 
 buildscript {

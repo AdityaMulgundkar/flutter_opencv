@@ -1,6 +1,6 @@
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:opencv4/opencv4.dart';
+import 'package:opencv/opencv.dart';
 
 void main() {
   const MethodChannel channel = MethodChannel('opencv4');
@@ -18,6 +18,6 @@ void main() {
   });
 
   test('getPlatformVersion', () async {
-    expect(await OpenCV4.platformVersion, '42');
+    expect(await OpenCV.platformVersion, '42');
   });
 }

@@ -1,7 +1,6 @@
 import 'dart:typed_data';
 
 import 'package:flutter/services.dart';
-import 'package:opencv4/core/helpers.dart';
 
 class ImgProc {
   static const MethodChannel _channel = const MethodChannel('opencv4');
@@ -288,5 +287,6 @@ class ImgProc {
     /// Function returns the set String as result, use for debugging
     return result;
   }
+
 
 }

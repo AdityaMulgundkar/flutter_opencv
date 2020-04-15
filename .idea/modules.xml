@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/opencv4.iml" filepath="$PROJECT_DIR$/opencv4.iml" />
+      <module fileurl="file://$PROJECT_DIR$/opencv.iml" filepath="$PROJECT_DIR$/opencv.iml" />
       <module fileurl="file://$PROJECT_DIR$/android/opencv4_android.iml" filepath="$PROJECT_DIR$/android/opencv4_android.iml" />
       <module fileurl="file://$PROJECT_DIR$/example/android/opencv4_example_android.iml" filepath="$PROJECT_DIR$/example/android/opencv4_example_android.iml" />
     </modules>

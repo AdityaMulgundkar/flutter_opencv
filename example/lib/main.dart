@@ -1,17 +1,10 @@
-import 'dart:convert';
-import 'dart:ffi';
-import 'dart:typed_data';
-
 import 'package:flutter/material.dart';
 import 'dart:async';
 
 import 'package:flutter/services.dart';
 import 'package:flutter_cache_manager/flutter_cache_manager.dart';
-import 'package:opencv4/opencv4.dart';
-import 'package:opencv4/core/helpers.dart';
-import 'package:opencv4/core/core.dart';
-import 'package:image/image.dart'
-    as img; //So that this does not conflict with the Image widget
+import 'package:opencv/opencv.dart';
+import 'package:opencv/core/core.dart';
 
 void main() => runApp(MyApp());
 
@@ -26,7 +19,6 @@ class _MyAppState extends State<MyApp> {
   Image image = Image.asset('assets/temp.png');
   Image imageNew = Image.asset('assets/temp.png');
   var file;
-  double _value = 100;
   bool preloaded = false;
   bool loaded = false;
   String _URL =
@@ -53,7 +45,7 @@ class _MyAppState extends State<MyApp> {
     String platformVersion;
     // Platform messages may fail, so we use a try/catch PlatformException.
     try {
-      platformVersion = await OpenCV4.platformVersion;
+      platformVersion = await OpenCV.platformVersion;
     } on PlatformException {
       platformVersion = 'Failed to get platform version.';
     }
@@ -155,6 +147,7 @@ class _MyAppState extends State<MyApp> {
                     iconSize: 24,
                     elevation: 16,
                     underline: Container(
+                      color: Colors.grey,
                       height: 2,
                     ),
                     onChanged: (String newValue) {

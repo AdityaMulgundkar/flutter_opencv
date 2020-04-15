@@ -1,8 +1,8 @@
-package com.mulgundkar.opencv4;
+package com.mulgundkar.opencv;
 
 import android.annotation.SuppressLint;
 
-import com.mulgundkar.opencv4.core.CVCore;
+import com.mulgundkar.opencv.core.CVCore;
 
 import org.opencv.android.OpenCVLoader;
 import org.opencv.core.Core;
@@ -27,29 +27,20 @@ import io.flutter.plugin.common.MethodChannel.Result;
 import io.flutter.plugin.common.PluginRegistry.Registrar;
 
 /**
- * Opencv4Plugin
+ * OpenCV4Plugin
  */
-public class Opencv4Plugin implements FlutterPlugin, MethodCallHandler {
+public class OpenCV4Plugin implements FlutterPlugin, MethodCallHandler {
     static boolean OpenCVFLag = false;
 
     @Override
     public void onAttachedToEngine(@NonNull FlutterPluginBinding flutterPluginBinding) {
         final MethodChannel channel = new MethodChannel(flutterPluginBinding.getFlutterEngine().getDartExecutor(), "opencv4");
-        channel.setMethodCallHandler(new Opencv4Plugin());
+        channel.setMethodCallHandler(new OpenCV4Plugin());
     }
 
-    // This static function is optional and equivalent to onAttachedToEngine. It supports the old
-    // pre-Flutter-1.12 Android projects. You are encouraged to continue supporting
-    // plugin registration via this function while apps migrate to use the new Android APIs
-    // post-flutter-1.12 via https://flutter.dev/go/android-project-migration.
-    //
-    // It is encouraged to share logic between onAttachedToEngine and registerWith to keep
-    // them functionally equivalent. Only one of onAttachedToEngine or registerWith will be called
-    // depending on the user's project. onAttachedToEngine or registerWith must both be defined
-    // in the same class.
     public static void registerWith(Registrar registrar) {
         final MethodChannel channel = new MethodChannel(registrar.messenger(), "opencv4");
-        channel.setMethodCallHandler(new Opencv4Plugin());
+        channel.setMethodCallHandler(new OpenCV4Plugin());
     }
 
     @Override

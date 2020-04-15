@@ -1,4 +1,4 @@
-package com.mulgundkar.opencv4.core;
+package com.mulgundkar.opencv.core;
 
 import android.annotation.SuppressLint;
 
@@ -26,7 +26,7 @@ import io.flutter.plugin.common.MethodChannel.Result;
 import io.flutter.plugin.common.PluginRegistry.Registrar;
 
 /**
- * Opencv4Plugin
+ * OpenCV4Plugin
  */
 public class CVCore {
 

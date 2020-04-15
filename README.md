@@ -3,8 +3,7 @@
 A Flutter plug-in providing a binding to OpenCV-4.x.
 
 [![Pub](https://img.shields.io/pub/v/opencv.svg)](https://pub.dartlang.org/packages/opencv)
-[![Website flutter-opencv.readthedocs.io](https://img.shields.io/website-up-down-green-red/http/flutter-opencv.readthedocs.io.svg)](https://flutter-opencv.readthedocs.io/)
-[![made-with-sphinx-doc](https://img.shields.io/badge/Made%20with-Sphinx-1f425f.svg)](https://www.sphinx-doc.org/)
+[![Docs flutter-opencv.readthedocs.io](https://img.shields.io/website-up-down-green-red/http/flutter-opencv.readthedocs.io.svg)](https://flutter-opencv.readthedocs.io/)
 [![GitHub license](https://img.shields.io/github/license/AdityaMulgundkar/flutter_opencv.svg)](https://github.com/AdityaMulgundkar/flutter_opencv/blob/master/LICENSE)
 
 [![Flutter OpenCV](https://media.giphy.com/media/M9UOQmSYQrWgOkYqO8/giphy.gif)](https://pub.dartlang.org/packages/opencv)
@@ -18,7 +17,7 @@ In the `pubspec.yaml` of your flutter project, add the following dependency:
 ```yaml
 dependencies:
   ...
-  opencv: "^1.0.6"
+  opencv: "^1.0.0"
 ```
 
 In your library add the following import:
@@ -27,26 +26,18 @@ In your library add the following import:
 import 'package:opencv/opencv.dart';
 ```
 
-### Example
+### Examples
 
 #### Basic Usage
 String output specifying success/failure.
-```dart
-String path = "/path/to/file/on/disk";
-```
 
-#### Loading
-Add flutter_cache_manager or any other dependency you'd like:
-```yaml
-dependencies:
-  ...
-  flutter_cache_manager: "^1.1.3"
-```
-And in dart code
-```dart
-String url = "";
-```
+#### Concepts
 
+##### Why not do a full binding?
+I am actually planning to write a full binding and publish it seperately later on. I understand that this implementation is lackluster & a lot of functions still need to be added. If you really need something, make a feature request.
+
+##### Why not use the core OpenCV classes like Mat?
+Because I wanted to provide a simple interface - one that does not require the user to learn OpenCV or it's API. Instead, much of the way the library works is designed around Flutter/Dart, making it easier for Flutter users to pick it up.
 
 ## Getting started
 
