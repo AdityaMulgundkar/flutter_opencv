@@ -31,12 +31,12 @@ import 'package:opencv/opencv.dart';
 #### Basic Usage
 String output specifying success/failure.
 
-#### Concepts
+### Concepts
 
-##### Why not do a full binding?
+#### Why not do a full binding?
 I am actually planning to write a full binding and publish it seperately later on. I understand that this implementation is lackluster & a lot of functions still need to be added. If you really need something, make a feature request.
 
-##### Why not use the core OpenCV classes like Mat?
+#### Why not use the core OpenCV classes like Mat?
 Because I wanted to provide a simple interface - one that does not require the user to learn OpenCV or it's API. Instead, much of the way the library works is designed around Flutter/Dart, making it easier for Flutter users to pick it up.
 
 ## Getting started
