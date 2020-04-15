@@ -17,7 +17,7 @@ In the `pubspec.yaml` of your flutter project, add the following dependency:
 ```yaml
 dependencies:
   ...
-  opencv: "^1.0.0"
+  opencv: "^1.0.1"
 ```
 
 In your library add the following import:
@@ -33,8 +33,10 @@ All functions are currently contained in the ImgProc class.
 e.g. `ImgProc.blur(...)`
 
 Variables for integer choices (read pre-defined values/enums for border types, threshold types, etc.) are stored in ImgProc & Core classes, exactly similar to how OpenCV itself does.
+However, these variables are renamed to suit the lowerCamelCase Dart fashion (just to objectively not lose "health suggestion points" on pub.dev.
+
 i.e. One of the border types is `Core.BORDER_REFLECT`,
-can be used in `ImgProc.blur(someBytes, someIntArray, someIntArray, Core.BORDER_REFLECT);`
+can be used in `ImgProc.blur(someBytes, someIntArray, someIntArray, Core.borderReflect);`
 
 So, if you refer to the OpenCV docs or a tutorial, the function you're implementing in OpenCV is very much identical to that in flutter_opencv.
 

@@ -1,4 +1,4 @@
-class Size{
+class Size {
   double x;
   double y;
   Size(double x, double y) {
@@ -7,7 +7,7 @@ class Size{
   }
 }
 
-class Point{
+class Point {
   double x;
   double y;
   Point(double x, double y) {

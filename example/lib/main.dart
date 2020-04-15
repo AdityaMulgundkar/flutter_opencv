@@ -23,7 +23,7 @@ class _MyAppState extends State<MyApp> {
   File file;
   bool preloaded = false;
   bool loaded = false;
-  String _URL =
+  String url =
       "https://blogmedia.evbstatic.com/wp-content/uploads/wpmulti/sites/8/shutterstock_199419065.jpg";
   String dropdownValue = 'None';
 
@@ -35,7 +35,7 @@ class _MyAppState extends State<MyApp> {
   }
 
   Future loadImage() async {
-    file = await DefaultCacheManager().getSingleFile(_URL);
+    file = await DefaultCacheManager().getSingleFile(url);
     setState(() {
       image = Image.file(file);
       preloaded = true;
@@ -70,22 +70,22 @@ class _MyAppState extends State<MyApp> {
       switch (functionName) {
         case 'blur':
           res = await ImgProc.blur(await file.readAsBytes(), [45, 45], [20, 30],
-              Core.BORDER_REFLECT);
+              Core.borderReflect);
           break;
         case 'GaussianBlur':
           res =
-              await ImgProc.GaussianBlur(await file.readAsBytes(), [45, 45], 0);
+              await ImgProc.gaussianBlur(await file.readAsBytes(), [45, 45], 0);
           break;
         case 'medianBlur':
           res = await ImgProc.medianBlur(await file.readAsBytes(), 45);
           break;
         case 'bilateralFilter':
           res = await ImgProc.bilateralFilter(
-              await file.readAsBytes(), 15, 80, 80, Core.BORDER_DEFAULT);
+              await file.readAsBytes(), 15, 80, 80, Core.borderConstant);
           break;
         case 'boxFilter':
           res = await ImgProc.boxFilter(await file.readAsBytes(), 50, [45, 45],
-              [-1, -1], true, Core.BORDER_DEFAULT);
+              [-1, -1], true, Core.borderConstant);
           break;
         case 'sqrBoxFilter':
           res =
@@ -96,7 +96,7 @@ class _MyAppState extends State<MyApp> {
           break;
         case 'threshold':
           res = await ImgProc.threshold(
-              await file.readAsBytes(), 80, 255, ImgProc.CV_THRESH_BINARY);
+              await file.readAsBytes(), 80, 255, ImgProc.threshBinary);
           break;
         case 'dilate':
           res = await ImgProc.dilate(await file.readAsBytes(), [2, 2]);
@@ -106,7 +106,7 @@ class _MyAppState extends State<MyApp> {
           break;
         case 'morphologyEx':
           res = await ImgProc.morphologyEx(
-              await file.readAsBytes(), ImgProc.MORPH_TOPHAT, [5, 5]);
+              await file.readAsBytes(), ImgProc.morphTopHat, [5, 5]);
           break;
         default:
           print("No function selected");
