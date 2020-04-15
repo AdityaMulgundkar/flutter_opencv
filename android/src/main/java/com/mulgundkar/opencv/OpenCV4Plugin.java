@@ -34,12 +34,12 @@ public class OpenCV4Plugin implements FlutterPlugin, MethodCallHandler {
 
     @Override
     public void onAttachedToEngine(@NonNull FlutterPluginBinding flutterPluginBinding) {
-        final MethodChannel channel = new MethodChannel(flutterPluginBinding.getFlutterEngine().getDartExecutor(), "opencv4");
+        final MethodChannel channel = new MethodChannel(flutterPluginBinding.getFlutterEngine().getDartExecutor(), "opencv");
         channel.setMethodCallHandler(new OpenCV4Plugin());
     }
 
     public static void registerWith(Registrar registrar) {
-        final MethodChannel channel = new MethodChannel(registrar.messenger(), "opencv4");
+        final MethodChannel channel = new MethodChannel(registrar.messenger(), "opencv");
         channel.setMethodCallHandler(new OpenCV4Plugin());
     }
 
@@ -143,6 +143,7 @@ public class OpenCV4Plugin implements FlutterPlugin, MethodCallHandler {
 
     @Override
     public void onDetachedFromEngine(@NonNull FlutterPluginBinding binding) {
+        // Do ntohing basically?
     }
 
 }

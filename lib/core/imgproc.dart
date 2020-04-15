@@ -3,7 +3,7 @@ import 'dart:typed_data';
 import 'package:flutter/services.dart';
 
 class ImgProc {
-  static const MethodChannel _channel = const MethodChannel('opencv4');
+  static const MethodChannel _channel = const MethodChannel('opencv');
 
   static final int
       CV_THRESH_BINARY = 0,
