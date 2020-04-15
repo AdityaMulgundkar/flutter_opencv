@@ -2,8 +2,7 @@ package com.mulgundkar.opencv4;
 
 import android.annotation.SuppressLint;
 
-import com.mulgundkar.opencv4.core.Core;
-import com.mulgundkar.opencv4.core.OpenCVCore;
+import com.mulgundkar.opencv4.core.CVCore;
 
 import org.opencv.android.OpenCVLoader;
 import org.opencv.core.Core;
@@ -63,7 +62,7 @@ public class Opencv4Plugin implements FlutterPlugin, MethodCallHandler {
             }
             // Handle initialization error
         }
-        Core core = new Core();
+        CVCore core = new CVCore();
         switch (call.method) {
             case "getPlatformVersion":
                 result.success("OpenCV " + Core.VERSION);

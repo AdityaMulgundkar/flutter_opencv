@@ -28,7 +28,7 @@ import io.flutter.plugin.common.PluginRegistry.Registrar;
 /**
  * Opencv4Plugin
  */
-public class Core {
+public class CVCore {
 
     public byte[] cvtColor(byte[] byteData, int outputType) {
         byte[] byteArray = new byte[0];

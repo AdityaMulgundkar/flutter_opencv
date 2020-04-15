@@ -10,7 +10,8 @@ import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 import 'package:opencv4/opencv4.dart';
 import 'package:opencv4/core/helpers.dart';
 import 'package:opencv4/core/core.dart';
-import 'package:image/image.dart' as img; //So that this does not conflict with the Image widget
+import 'package:image/image.dart'
+    as img; //So that this does not conflict with the Image widget
 
 void main() => runApp(MyApp());
 
@@ -21,7 +22,6 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   String _platformVersion = 'Unknown';
-  String _status = 'Unknown';
   dynamic res;
   Image image = Image.asset('assets/temp.png');
   Image imageNew = Image.asset('assets/temp.png');
@@ -29,7 +29,9 @@ class _MyAppState extends State<MyApp> {
   double _value = 100;
   bool preloaded = false;
   bool loaded = false;
-  String _URL = "https://blogmedia.evbstatic.com/wp-content/uploads/wpmulti/sites/8/shutterstock_199419065.jpg";
+  String _URL =
+      "https://blogmedia.evbstatic.com/wp-content/uploads/wpmulti/sites/8/shutterstock_199419065.jpg";
+  String dropdownValue = 'None';
 
   @override
   void initState() {
@@ -67,21 +69,55 @@ class _MyAppState extends State<MyApp> {
   }
 
   // Platform messages are asynchronous, so we initialize in an async method.
-  Future<void> threshold() async {
+  Future<void> runAFunction(String functionName) async {
     String platformVersion;
     // Platform messages may fail, so we use a try/catch PlatformException.
     try {
-//      res = await ImgProc.threshold(await file.readAsBytes(), _value, 255, ImgProc.CV_THRESH_BINARY);
-//      res = await ImgProc.blur(await file.readAsBytes(), [45,45], [20,30], Core.BORDER_REFLECT);
-//      res = await ImgProc.GaussianBlur(await file.readAsBytes(), [45,45], 0);
-//      res = await ImgProc.medianBlur(await file.readAsBytes(), 45);
-//      res = await ImgProc.bilateralFilter(await file.readAsBytes(), 15, 80, 80, Core.BORDER_DEFAULT);
-//      res = await ImgProc.boxFilter(await file.readAsBytes(), 50, [45,45], [-1,-1], true, Core.BORDER_DEFAULT);
-//      res = await ImgProc.sqrBoxFilter(await file.readAsBytes(), -1, [1,1]);
-//      res = await ImgProc.filter2D(await file.readAsBytes(), -1, [2,2]);
-//      res = await ImgProc.dilate(await file.readAsBytes(), [2,2]);
-//      res = await ImgProc.erode(await file.readAsBytes(), [2,2]);
-      res = await ImgProc.morphologyEx(await file.readAsBytes(), ImgProc.MORPH_TOPHAT, [5,5]);
+      switch (functionName) {
+        case 'blur':
+          res = await ImgProc.blur(await file.readAsBytes(), [45, 45], [20, 30],
+              Core.BORDER_REFLECT);
+          break;
+        case 'GaussianBlur':
+          res =
+              await ImgProc.GaussianBlur(await file.readAsBytes(), [45, 45], 0);
+          break;
+        case 'medianBlur':
+          res = await ImgProc.medianBlur(await file.readAsBytes(), 45);
+          break;
+        case 'bilateralFilter':
+          res = await ImgProc.bilateralFilter(
+              await file.readAsBytes(), 15, 80, 80, Core.BORDER_DEFAULT);
+          break;
+        case 'boxFilter':
+          res = await ImgProc.boxFilter(await file.readAsBytes(), 50, [45, 45],
+              [-1, -1], true, Core.BORDER_DEFAULT);
+          break;
+        case 'sqrBoxFilter':
+          res =
+              await ImgProc.sqrBoxFilter(await file.readAsBytes(), -1, [1, 1]);
+          break;
+        case 'filter2D':
+          res = await ImgProc.filter2D(await file.readAsBytes(), -1, [2, 2]);
+          break;
+        case 'threshold':
+          res = await ImgProc.threshold(
+              await file.readAsBytes(), 80, 255, ImgProc.CV_THRESH_BINARY);
+          break;
+        case 'dilate':
+          res = await ImgProc.dilate(await file.readAsBytes(), [2, 2]);
+          break;
+        case 'erode':
+          res = await ImgProc.erode(await file.readAsBytes(), [2, 2]);
+          break;
+        case 'morphologyEx':
+          res = await ImgProc.morphologyEx(
+              await file.readAsBytes(), ImgProc.MORPH_TOPHAT, [5, 5]);
+          break;
+        default:
+          print("No function selected");
+          break;
+      }
 
       setState(() {
         imageNew = Image.memory(res);
@@ -98,45 +134,66 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-        appBar: AppBar(
-          title: const Text('Plugin example app'),
-        ),
-        body: Column(
-          children: <Widget>[
-            Center(
-              child: Text('Running on: $_platformVersion\n'),
-            ),
-
-            Center(
-              child: RaisedButton(
-                onPressed: () {
-                  setState(() {
-                    _value = _value;
-                  });
-                  threshold();
-                },
-                child: Text('Run'),
+          appBar: AppBar(
+            title: const Text('Plugin example app'),
+          ),
+          body: Column(
+            children: <Widget>[
+              Center(
+                child: Text('Running on: $_platformVersion\n'),
               ),
-            ),
-
-            Text("Before"),
-            preloaded?image:Text("waiting"),
-            Slider(
-              min: 0,
-              max: 255,
-              value: _value,
-              onChanged: (value) {
-                setState(() {
-                  _value = value;
-                });
-                threshold();
-              },
-            ),
-            Text("After"),
-            loaded?imageNew:Text("waiting")
-          ],
-        )
-      ),
+              Text("Before"),
+              preloaded
+                  ? image
+                  : Text("There might be an error in loading your asset."),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: <Widget>[
+                  DropdownButton<String>(
+                    value: dropdownValue,
+                    icon: Icon(Icons.arrow_downward),
+                    iconSize: 24,
+                    elevation: 16,
+                    underline: Container(
+                      height: 2,
+                    ),
+                    onChanged: (String newValue) {
+                      setState(() {
+                        dropdownValue = newValue;
+                      });
+                    },
+                    items: <String>[
+                      'None',
+                      'blur',
+                      'GaussianBlur',
+                      'medianBlur',
+                      'bilateralFilter',
+                      'boxFilter',
+                      'sqrBoxFilter',
+                      'filter2D',
+                      'threshold',
+                      'dilate',
+                      'erode',
+                      'morphologyEx'
+                    ].map<DropdownMenuItem<String>>((String value) {
+                      return DropdownMenuItem<String>(
+                        value: value,
+                        child: Text(value),
+                      );
+                    }).toList(),
+                  ),
+                  RaisedButton(
+                    onPressed: () {
+                      runAFunction(dropdownValue);
+                    },
+                    child: Text('Run'),
+                  ),
+                ],
+              ),
+              Text("After"),
+              loaded ? imageNew : Container()
+            ],
+          )),
     );
   }
 }
