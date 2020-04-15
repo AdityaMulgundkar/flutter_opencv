@@ -28,7 +28,7 @@ import 'package:opencv/opencv.dart';
 
 ### Examples
 
-#### Basic Usage
+#### Core concepts
 All functions are currently contained in the ImgProc class.
 e.g. `ImgProc.blur(...)`
 
@@ -41,6 +41,20 @@ So, if you refer to the OpenCV docs or a tutorial, the function you're implement
 The only difference is how the data is managed - OpenCV uses the Mat class to store every image as a matrix.
 
 flutter_opencv instead only works on data as an array of bytes.
+
+#### Basic usage
+The only difference in OpenCV's methods and ours - OpenCV functions take values of the source & destination matrices by reference. In Flutter, we use byte arrays instead of Mat() & we do not need to provide a destination byte array.
+
+So, basically,
+`someFunction(sourceMatrix, destinationMatrix, otherValue1, otherValue2, ...)` in OpenCV
+is now instead
+`dynamic destinationMatrix = someFunction(sourceMatrix, otherValue1, otherValue2, ...)` in flutter_opencv.
+
+e.g.
+For simple thresholding, in OpenCV, you'd do `Imgproc.threshold(sourceMatrix, destinationMatrix, 80, 255, Imgproc.THRESH_BINARY);`
+Whereas in flutter_opencv you'd do `res = await ImgProc.threshold(await file.readAsBytes(), 80, 255, ImgProc.CV_THRESH_BINARY);`
+
+####
 
 ## FAQs related to the idea/concept behind this plug-in
 
