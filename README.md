@@ -54,7 +54,23 @@ e.g.
 For simple thresholding, in OpenCV, you'd do `Imgproc.threshold(sourceMatrix, destinationMatrix, 80, 255, Imgproc.THRESH_BINARY);`
 Whereas in flutter_opencv you'd do `res = await ImgProc.threshold(await file.readAsBytes(), 80, 255, ImgProc.CV_THRESH_BINARY);`
 
-####
+#### Input images & formats
+Since we're not representing images as Mat(), we're going to need the byte[] data. I'll write down methods for each (Flutter) Image class here.
+For now,
+1. Image from File:
+`File file = await DefaultCacheManager().getSingleFile(_URL);` will fetch the file from the internet.
+`await file.readAsBytes()` can be directly passed to any of the functions, since it returns a byte array.
+
+#### Storing result, temporarily
+`dynamic outputMatrix = someFunction(...)` will store a byte array in outputMatrix.
+
+#### Output images & formats
+For now,
+1. Image from memory:
+`Image.memory(outputMatrix)` will show the image obtained (as a byte array) from the above function.
+
+#### Cascading functions/effects
+Since you're never going to just implement one function, there's a need to be able to cascade. Inputs & outputs to all functions are common - byte arrays. Hence output from one function can directly be fed to the next.
 
 ## FAQs related to the idea/concept behind this plug-in
 
@@ -70,7 +86,11 @@ Unfortunately, no. The build size would be the same for this, or a fully bound v
 ### Benchmarks?
 None yet. I'm still profiling the plug-in for most use cases, and haven't faced any issues with rendering so far. Will add benchmarks soon. PR/PM me if interested.
 
-###
+### What OpenCV version is flutter_opencv built on top of?
+As of now, the plug-in is built on top of the builds provided for OpenCV v4.1. I know that OpenCV v4.3 is out already, but an issue with the android exportable AAR file prevents me from hosting multiple versions right now.
+In case you need to change your OpenCV version (read downgrade) while working with this library, you can change it the android/build.gradle file. Just change the dependency version to some other supported one for `implementation 'com.quickbirdstudios:opencv:4.1.0'`.
+
+Please keep in mind that the above build files (AARs) are provided by someone else - https://github.com/quickbirdstudios/opencv-android. I'm grateful to these guys, but unsure of how often (and far) they would maintain the build repositories, so I'm also working on putting multiple different versions of OpenCV builds on bintray - but it's low on the priority list for now.
 
 ## Getting started
 
@@ -89,9 +109,12 @@ For help getting started with Flutter, view the online [documentation](https://f
    - [ ] List [future features](https://docs.opencv.org/2.4/index.html) in the doc
    - [ ] Create an issue template
    - [ ] Document basic usage
+   - [ ] Setup CI for build quality/code cov
    - [ ] Document/blog about advanced usage
    - [ ] Create an feature request template
    - [ ] Write tests
+   - [ ] Integrate iOS, setup projects/kanban board for iOS development
+   - [ ] Build multiple OpenCV versions, host on bintray
 
 ## Changelog
 

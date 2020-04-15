@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'dart:async';
 
@@ -18,7 +20,7 @@ class _MyAppState extends State<MyApp> {
   dynamic res;
   Image image = Image.asset('assets/temp.png');
   Image imageNew = Image.asset('assets/temp.png');
-  var file;
+  File file;
   bool preloaded = false;
   bool loaded = false;
   String _URL =
