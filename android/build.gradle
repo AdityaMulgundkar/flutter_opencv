@@ -34,8 +34,5 @@ android {
 }
 
 dependencies {
-    //compile project(path: ':opencv')
-    //implementation project(path:':opencv', configuration: 'default')
     implementation 'com.quickbirdstudios:opencv:4.1.0'
-    //implementation 'com.mulgundkar:opencv_android:4.1.0-contrib'
 }

@@ -71,9 +71,18 @@ class _MyAppState extends State<MyApp> {
     String platformVersion;
     // Platform messages may fail, so we use a try/catch PlatformException.
     try {
-      //file = await DefaultCacheManager().getSingleFile(_URL);
-      //res = await ImgProc.threshold(await file.readAsBytes(), _value, 255, ImgProc.CV_THRESH_BINARY);
-      res = await ImgProc.blur(await file.readAsBytes(), [50,50], [50,50], Core.BORDER_REFLECT);
+//      res = await ImgProc.threshold(await file.readAsBytes(), _value, 255, ImgProc.CV_THRESH_BINARY);
+//      res = await ImgProc.blur(await file.readAsBytes(), [45,45], [20,30], Core.BORDER_REFLECT);
+//      res = await ImgProc.GaussianBlur(await file.readAsBytes(), [45,45], 0);
+//      res = await ImgProc.medianBlur(await file.readAsBytes(), 45);
+//      res = await ImgProc.bilateralFilter(await file.readAsBytes(), 15, 80, 80, Core.BORDER_DEFAULT);
+//      res = await ImgProc.boxFilter(await file.readAsBytes(), 50, [45,45], [-1,-1], true, Core.BORDER_DEFAULT);
+//      res = await ImgProc.sqrBoxFilter(await file.readAsBytes(), -1, [1,1]);
+//      res = await ImgProc.filter2D(await file.readAsBytes(), -1, [2,2]);
+//      res = await ImgProc.dilate(await file.readAsBytes(), [2,2]);
+//      res = await ImgProc.erode(await file.readAsBytes(), [2,2]);
+      res = await ImgProc.morphologyEx(await file.readAsBytes(), ImgProc.MORPH_TOPHAT, [5,5]);
+
       setState(() {
         imageNew = Image.memory(res);
         loaded = true;
