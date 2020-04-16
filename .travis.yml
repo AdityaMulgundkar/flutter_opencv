@@ -5,8 +5,8 @@ sudo: false
 dart:
   - 2.7.1
 script:
-  - pub get
-  - pub run test test/
+  - flutter pub get
+  - flutter pub run test test/
 after_success:
   - bash <(curl -s https://codecov.io/bash)
 cache:
