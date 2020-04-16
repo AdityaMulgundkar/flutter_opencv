@@ -11,8 +11,7 @@ install:
   - gem install coveralls-lcov
 script:
   - ./flutter/bin/flutter packages pub get --packages-dir
-  - ./flutter/bin/flutter packages pub run test
-  - ./flutter/bin/flutter packages pub run dart_codecov_generator --report-on=bin/ --no-html --verbose test/env_test.dart
+  - ./flutter/bin/flutter test test/opencv4_test.dart 
   - bash <(curl -s https://codecov.io/bash)
 after_success:
   - coveralls-lcov coverage/lcov.info
