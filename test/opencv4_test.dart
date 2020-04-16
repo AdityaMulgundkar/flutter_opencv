@@ -3,7 +3,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:opencv/opencv.dart';
 
 void main() {
-  const MethodChannel channel = MethodChannel('opencv4');
+  const MethodChannel channel = MethodChannel('opencv');
 
   TestWidgetsFlutterBinding.ensureInitialized();
 
