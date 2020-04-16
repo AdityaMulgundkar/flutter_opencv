@@ -1,21 +1,18 @@
+  
 language: dart
-dart:
-  - stable
-os:
-  - linux
-sudo: false
+dist: xenial
+addons:
+  apt:
+    packages:
+      - lib32stdc++6
 install:
-  - echo 'Avoid default Travis CI install step' # this is to avoid an error with pub in Travis
-before_script:
-  - cd ..
-  - git clone https://github.com/AdityaMulgundkar/flutter_opencv.git
-  - export PATH=`pwd`/flutter/bin:`pwd`/flutter/bin/cache/dart-sdk/bin:$PATH
-  - flutter doctor
+  - git clone https://github.com/flutter/flutter.git -b stable
+  - ./flutter/bin/flutter doctor
+  - gem install coveralls-lcov
 script:
-  - cd $TRAVIS_BUILD_DIR
-  - flutter packages get
-  - flutter analyze --no-pub --no-current-package lib
-  - flutter test
+  - ./flutter/bin/flutter test --coverage
+after_success:
+  - coveralls-lcov coverage/lcov.info
 cache:
   directories:
     - $HOME/.pub-cache
