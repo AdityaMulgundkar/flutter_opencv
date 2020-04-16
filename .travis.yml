@@ -10,9 +10,9 @@ install:
   - ./flutter/bin/flutter doctor
   - gem install coveralls-lcov
 script:
-  - pub get --packages-dir
-  - pub run test
-  - pub run dart_codecov_generator --report-on=bin/ --no-html --verbose test/env_test.dart
+  - flutter pub get --packages-dir
+  - flutter pub run test
+  - flutter pub run dart_codecov_generator --report-on=bin/ --no-html --verbose test/env_test.dart
   - bash <(curl -s https://codecov.io/bash)
 after_success:
   - coveralls-lcov coverage/lcov.info
