@@ -1,14 +1,18 @@
+  
 language: dart
-os:
-  - linux
-sudo: false
-dart:
-  - 2.7.1
+dist: xenial
+addons:
+  apt:
+    packages:
+      - lib32stdc++6
+install:
+  - git clone https://github.com/flutter/flutter.git -b stable
+  - ./flutter/bin/flutter doctor
+  - gem install coveralls-lcov
 script:
-  - pub get
-  - pub run test test/
+  - ./flutter/bin/flutter test --coverage
 after_success:
-  - bash <(curl -s https://codecov.io/bash)
+  - coveralls-lcov coverage/lcov.info
 cache:
   directories:
     - $HOME/.pub-cache
