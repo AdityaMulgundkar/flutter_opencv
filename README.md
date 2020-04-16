@@ -112,10 +112,10 @@ For help getting started with Flutter, view the online [documentation](https://f
    - [ ] Document using Sphinx, store in `/docs`
    - [ ] List [future features](https://docs.opencv.org/2.4/index.html) in the doc
    - [ ] Create an issue template
-   - [ ] Document basic usage
-   - [ ] Setup CI for build quality/code cov
+   - [x] Document basic usage
+   - [x] Setup CI for build quality/code cov
    - [ ] Document/blog about advanced usage
-   - [ ] Create an feature request template
+   - [ ] Create a feature request template
    - [ ] Write tests
    - [ ] Integrate iOS, setup projects/kanban board for iOS development
    - [ ] Build multiple OpenCV versions, host on bintray
