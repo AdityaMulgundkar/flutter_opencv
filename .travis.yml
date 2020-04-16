@@ -1,14 +1,28 @@
 language: dart
+dart:
+  - stable
 os:
   - linux
 sudo: false
-dart:
-  - 2.7.1
+addons:
+  apt:
+    sources:
+      - ubuntu-toolchain-r-test # you need this source to get the right version of libstdc++6
+    packages:
+      - libstdc++6
+      - fonts-droid
+install:
+  - echo 'Avoid default Travis CI install step' # this is to avoid an error with pub in Travis
+before_script:
+  - cd ..
+  - git clone https://github.com/flutter/flutter.git
+  - export PATH=`pwd`/flutter/bin:`pwd`/flutter/bin/cache/dart-sdk/bin:$PATH
+  - flutter doctor
 script:
-  - flutter pub get
-  - flutter pub run test test/
-after_success:
-  - bash <(curl -s https://codecov.io/bash)
+  - cd $TRAVIS_BUILD_DIR
+  - flutter packages get
+  - flutter analyze --no-pub --no-current-package lib
+  - flutter test
 cache:
   directories:
     - $HOME/.pub-cache
