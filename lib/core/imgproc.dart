@@ -5,8 +5,7 @@ import 'package:flutter/services.dart';
 class ImgProc {
   static const MethodChannel _channel = const MethodChannel('opencv');
 
-  static final int
-  iplBorderConstant = 0,
+  static final int iplBorderConstant = 0,
       iplBorderReplicate = 1,
       iplBorderReflect = 2,
       iplBorderWrap = 3,
@@ -42,10 +41,8 @@ class ImgProc {
       cvThreshOTSU = 8,
       cvThreshTRIANGLE = 16;
 
-
 // C++: enum Hersheyfonts
-  static final int
-  fontHersheySimpleX = 0,
+  static final int fontHersheySimpleX = 0,
       fontHersheyPlain = 1,
       fontHersheyDuplex = 2,
       fontHersheyComplex = 3,
@@ -55,17 +52,14 @@ class ImgProc {
       fontHersheyScriptComplex = 7,
       fontItalic = 16;
 
-
   // C++: enum interpolationMasks
-  static final int
-  interBits = 5,
+  static final int interBits = 5,
       interBits2 = interBits * 2,
-      interTabSize = 1 << interBits ,
-      interTabSize2 = interTabSize* interTabSize;
+      interTabSize = 1 << interBits,
+      interTabSize2 = interTabSize * interTabSize;
 
 // C++: enum MorphTypes
-  static final int
-  morphErode = 0,
+  static final int morphErode = 0,
       morphDilate = 1,
       morphOpen = 2,
       morphClose = 3,
@@ -74,48 +68,30 @@ class ImgProc {
       morphBlackHat = 6,
       morphHitMiss = 7;
 
-
   // C++: enum floodFillFlags
-  static final int
-  floodFillFixedRange = 1 << 16,
-      floodFillMaskOnly = 1 << 17;
-
+  static final int floodFillFixedRange = 1 << 16, floodFillMaskOnly = 1 << 17;
 
   // C++: enum HoughModes
-  static final int
-  houghSTANDARD = 0,
+  static final int houghSTANDARD = 0,
       houghProbabilistic = 1,
       houghMultiScale = 2,
       houghGradient = 3;
 
-
   // C++: enum ConnectedComponentsAlgorithmsTypes
-  static final int
-  cclWU = 0,
-      cclDefault = -1,
-      cclGrana = 1;
-
+  static final int cclWU = 0, cclDefault = -1, cclGrana = 1;
 
   // C++: enum retrievalModes
-  static final int
-  retrExternal = 0,
+  static final int retrExternal = 0,
       retrList = 1,
       retrCComp = 2,
       retrTree = 3,
       retrFloodFill = 4;
 
-
   // C++: enum GrabCutClasses
-  static final int
-  gcBGD = 0,
-      gcFGD = 1,
-      gcPRBGD = 2,
-      gcPRFGD = 3;
-
+  static final int gcBGD = 0, gcFGD = 1, gcPRBGD = 2, gcPRFGD = 3;
 
 // C++: enum colormapTypes
-  static final int
-  colorMapAutumn = 0,
+  static final int colorMapAutumn = 0,
       colorMapBone = 1,
       colorMapJet = 2,
       colorMapWinter = 3,
@@ -137,10 +113,8 @@ class ImgProc {
       colorMapTwilightShifted = 19,
       colorMapTurbo = 20;
 
-
 // C++: enum histCompMethods
-  static final int
-  histCmpCORREL = 0,
+  static final int histCmpCORREL = 0,
       histCmpChiSqr = 1,
       histCmpInterSect = 2,
       histCmpBhattacharyya = 3,
@@ -148,18 +122,11 @@ class ImgProc {
       histCmpChiSqrAlt = 4,
       histCmpKLDIV = 5;
 
-
   // C++: enum LineTypes
-  static final int
-  filled = -1,
-      line4 = 4,
-      line8 = 8,
-      lineAA = 16;
-
+  static final int filled = -1, line4 = 4, line8 = 8, lineAA = 16;
 
   // C++: enum interpolationFlags
-  static final int
-  interNearest = 0,
+  static final int interNearest = 0,
       interLinear = 1,
       interCubic = 2,
       interArea = 3,
@@ -169,30 +136,20 @@ class ImgProc {
       interFillOutliers = 8,
       interInverseMap = 16;
 
-
   // C++: enum SpecialFilter
-  static final int
-  filterScharr = -1;
-
+  static final int filterScharr = -1;
 
   // C++: enum ContourApproximationModes
-  static final int
-  chainApproxN = 1,
+  static final int chainApproxN = 1,
       chainApproxSimple = 2,
       chainApproxTC89L1 = 3,
       chainApproxTC89KCOS = 4;
 
-
   // C++: enum RectanglesIntersectTypes
-  static final int
-  intersectN = 0,
-      intersectPartial = 1,
-      intersectFull = 2;
-
+  static final int intersectN = 0, intersectPartial = 1, intersectFull = 2;
 
   // C++: enum <unnamed>
-  static final int
-  cvGAUSSIAN5x5 = 7,
+  static final int cvGAUSSIAN5x5 = 7,
       cvSCHARR = -1,
       cvMAXSOBELKSIZE = 7,
       cvRGBA2mRGBA = 125,
@@ -233,23 +190,16 @@ class ImgProc {
       cvHoughMULTISCALE = 2,
       cvHoughGradient = 3;
 
-
 // C++: enum ShapeMatchModes
-  static final int
-  contoursMatchI1 = 1,
+  static final int contoursMatchI1 = 1,
       contoursMatchI2 = 2,
       contoursMatchI3 = 3;
 
-
   // C++: enum WarpPolarMode
-  static final int
-  warpPolarLinear = 0,
-      warpPolarLog = 256;
-
+  static final int warpPolarLinear = 0, warpPolarLog = 256;
 
   // C++: enum ColorConversionCodes
-  static final int
-  colorBGR2BGRA = 0,
+  static final int colorBGR2BGRA = 0,
       colorRGB2RGBA = colorBGR2BGRA,
       colorBGRA2BGR = 1,
       colorRGBA2RGB = colorBGRA2BGR,
@@ -457,15 +407,10 @@ class ImgProc {
       colorColorcvTMAX = 143;
 
   // C++: enum LineSegmentDetectorModes
-  static final int
-  lsdRefineN = 0,
-      lsdRefineSTD = 1,
-      lsdRefineADV = 2;
-
+  static final int lsdRefineN = 0, lsdRefineSTD = 1, lsdRefineADV = 2;
 
   // C++: enum thresholdTypes
-  static final int
-  threshBinary = 0,
+  static final int threshBinary = 0,
       threshBinaryInv = 1,
       threshTrunc = 2,
       threshToZero = 3,
@@ -474,44 +419,29 @@ class ImgProc {
       threshOTSU = 8,
       threshTriangle = 16;
 
-
   // C++: enum AdaptivethresholdTypes
-  static final int
-  adaptiveThreshMeanC = 0,
-      adaptiveThreshGaussianC = 1;
-
+  static final int adaptiveThreshMeanC = 0, adaptiveThreshGaussianC = 1;
 
   // C++: enum MorphShapesc
-  static final int
-  cvShapeRect = 0,
+  static final int cvShapeRect = 0,
       cvShapeCross = 1,
       cvShapeEllipse = 2,
       cvShapeCustom = 100;
 
 // C++: enum GrabCutModes
-  static final int
-  gcInitWithRect = 0,
+  static final int gcInitWithRect = 0,
       gcInitWithMask = 1,
       gcEVAL = 2,
       gcEvalFreezeModel = 3;
 
-
   // C++: enum MorphShapes
-  static final int
-  morphRECT = 0,
-      morphCross = 1,
-      morphEllipse = 2;
-
+  static final int morphRECT = 0, morphCross = 1, morphEllipse = 2;
 
   // C++: enum DistanceTransformLabelTypes
-  static final int
-  distLabelCComp = 0,
-      distLabelPixel = 1;
-
+  static final int distLabelCComp = 0, distLabelPixel = 1;
 
   // C++: enum DistanceTypes
-  static final int
-  distUSER = -1,
+  static final int distUSER = -1,
       distL1 = 1,
       distL2 = 2,
       distC = 3,
@@ -520,48 +450,37 @@ class ImgProc {
       distWelsch = 6,
       distHuber = 7;
 
-
   // C++: enum TemplateMatchModes
-  static final int
-  tmSQDiff = 0,
+  static final int tmSQDiff = 0,
       tmSQDiffNormed = 1,
       tmCCORR = 2,
       tmCCORRNormed = 3,
       tmCCOEff = 4,
       tmCCOEffNormed = 5;
 
-
   // C++: enum DistanceTransformMasks
-  static final int
-  distMask3 = 3,
-      distMask5 = 5,
-      distMaskPrecise = 0;
+  static final int distMask3 = 3, distMask5 = 5, distMaskPrecise = 0;
 
 // C++: enum ConnectedComponentsTypes
-  static final int
-  ccStatLeft = 0,
+  static final int ccStatLeft = 0,
       ccStatTop = 1,
       ccStatWidth = 2,
       ccStatHeight = 3,
       ccStatArea = 4,
       ccStatMax = 5;
 
-
   // C++: enum SmoothMethodc
-  static final int
-  cvBlurNoScale = 0,
+  static final int cvBlurNoScale = 0,
       cvBlur = 1,
       cvGaussian = 2,
       cvMedian = 3,
       cvBilateral = 4;
 
-
   // C++: enum MarkerTypes
-  static final int
-  markerCross = 0,
-      markerTiltedCross= 1,
+  static final int markerCross = 0,
+      markerTiltedCross = 1,
       markerStar = 2,
-      markerDiamond= 3,
+      markerDiamond = 3,
       markerSquare = 4,
       markerTriangleUp = 5,
       markerTriangleDown = 6;
@@ -890,7 +809,18 @@ class ImgProc {
   }
 
   static Future<dynamic> houghCircles(
-      Uint8List byteData, int method, double dp, double minDist, double param1, double param2, int minRadius, int maxRadius,[int centerWidth=2, String centerColor="#ff0000", int circleWidth=2, String circleColor="#ffffff"]) async {
+      Uint8List byteData,
+      int method,
+      double dp,
+      double minDist,
+      double param1,
+      double param2,
+      int minRadius,
+      int maxRadius,
+      [int centerWidth = 2,
+      String centerColor = "#ff0000",
+      int circleWidth = 2,
+      String circleColor = "#ffffff"]) async {
     /// Variable to store operation result
     final dynamic result = await _channel.invokeMethod('houghCircles', {
       'byteData': byteData,

@@ -106,11 +106,11 @@ class _MyAppState extends State<MyApp> {
           break;
         case 'pyrUp':
           res = await ImgProc.pyrUp(
-              await file.readAsBytes(), [563*2,375*2], Core.borderDefault);
+              await file.readAsBytes(), [563 * 2, 375 * 2], Core.borderDefault);
           break;
         case 'pyrDown':
-          res = await ImgProc.pyrDown(
-              await file.readAsBytes(), [563~/2.toInt(),375~/2.toInt()], Core.borderDefault);
+          res = await ImgProc.pyrDown(await file.readAsBytes(),
+              [563 ~/ 2.toInt(), 375 ~/ 2.toInt()], Core.borderDefault);
           break;
         case 'pyrMeanShiftFiltering':
           res = await ImgProc.pyrMeanShiftFiltering(
@@ -121,35 +121,31 @@ class _MyAppState extends State<MyApp> {
               await file.readAsBytes(), 80, 255, ImgProc.threshBinary);
           break;
         case 'adaptiveThreshold':
-          res = await ImgProc.adaptiveThreshold(
-              await file.readAsBytes(), 125, ImgProc.adaptiveThreshMeanC,
-              ImgProc.threshBinary, 11, 12);
+          res = await ImgProc.adaptiveThreshold(await file.readAsBytes(), 125,
+              ImgProc.adaptiveThreshMeanC, ImgProc.threshBinary, 11, 12);
           break;
         case 'copyMakeBorder':
           res = await ImgProc.copyMakeBorder(
               await file.readAsBytes(), 20, 20, 20, 20, Core.borderConstant);
           break;
         case 'sobel':
-          res = await ImgProc.sobel(
-              await file.readAsBytes(), -1, 1, 1);
+          res = await ImgProc.sobel(await file.readAsBytes(), -1, 1, 1);
           break;
         case 'scharr':
           res = await ImgProc.scharr(
-              await file.readAsBytes(),  ImgProc.cvSCHARR, 0, 1);
+              await file.readAsBytes(), ImgProc.cvSCHARR, 0, 1);
           break;
         case 'laplacian':
-          res = await ImgProc.laplacian(
-              await file.readAsBytes(), 10);
+          res = await ImgProc.laplacian(await file.readAsBytes(), 10);
           break;
         case 'distanceTransform':
           res = await ImgProc.threshold(
               await file.readAsBytes(), 80, 255, ImgProc.threshBinary);
-          res = await ImgProc.distanceTransform(
-              await res, ImgProc.distC, 3);
+          res = await ImgProc.distanceTransform(await res, ImgProc.distC, 3);
           break;
         case 'resize':
           res = await ImgProc.resize(
-              await file.readAsBytes(), [500,500], 0, 0, ImgProc.interArea);
+              await file.readAsBytes(), [500, 500], 0, 0, ImgProc.interArea);
           break;
         case 'applyColorMap':
           res = await ImgProc.applyColorMap(
