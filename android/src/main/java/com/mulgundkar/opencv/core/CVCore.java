@@ -30,6 +30,7 @@ import io.flutter.plugin.common.PluginRegistry.Registrar;
  */
 public class CVCore {
 
+    @SuppressLint("MissingPermission")
     public byte[] cvtColor(byte[] byteData, int outputType) {
         byte[] byteArray = new byte[0];
         try {
