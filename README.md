@@ -19,7 +19,7 @@ In the `pubspec.yaml` of your flutter project, add the following dependency:
 ```yaml
 dependencies:
   ...
-  opencv: "^1.0.1"
+  opencv: "^1.0.2"
 ```
 
 In your library add the following import:

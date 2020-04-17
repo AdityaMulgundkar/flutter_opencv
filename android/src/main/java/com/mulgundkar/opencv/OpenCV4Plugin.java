@@ -64,8 +64,8 @@ public class OpenCV4Plugin implements FlutterPlugin, MethodCallHandler {
             case "blur":
                 result.success(core.blur((byte[]) call.argument("byteData"), (ArrayList) call.argument("kernelSize"), (ArrayList) call.argument("anchorPoint"), (int) call.argument("borderType")));
                 break;
-            case "GaussianBlur":
-                result.success(core.GaussianBlur((byte[]) call.argument("byteData"), (ArrayList) call.argument("kernelSize"), (double) call.argument("sigmaX")));
+            case "gaussianBlur":
+                result.success(core.gaussianBlur((byte[]) call.argument("byteData"), (ArrayList) call.argument("kernelSize"), (double) call.argument("sigmaX")));
                 break;
             case "medianBlur":
                 result.success(core.medianBlur((byte[]) call.argument("byteData"), (int) call.argument("kernelSize")));
@@ -109,14 +109,14 @@ public class OpenCV4Plugin implements FlutterPlugin, MethodCallHandler {
             case "copyMakeBorder":
                 result.success(core.copyMakeBorder((byte[]) call.argument("byteData"), (int) call.argument("top"), (int) call.argument("bottom"), (int) call.argument("left"), (int) call.argument("right"), (int) call.argument("borderType")));
                 break;
-            case "Sobel":
-                result.success(core.Sobel((byte[]) call.argument("byteData"), (int) call.argument("depth"), (int) call.argument("dx"), (int) call.argument("dy")));
+            case "sobel":
+                result.success(core.sobel((byte[]) call.argument("byteData"), (int) call.argument("depth"), (int) call.argument("dx"), (int) call.argument("dy")));
                 break;
-            case "Scharr":
-                result.success(core.Scharr((byte[]) call.argument("byteData"), (int) call.argument("depth"), (int) call.argument("dx"), (int) call.argument("dy")));
+            case "scharr":
+                result.success(core.scharr((byte[]) call.argument("byteData"), (int) call.argument("depth"), (int) call.argument("dx"), (int) call.argument("dy")));
                 break;
-            case "Laplacian":
-                result.success(core.Laplacian((byte[]) call.argument("byteData"), (int) call.argument("depth")));
+            case "laplacian":
+                result.success(core.laplacian((byte[]) call.argument("byteData"), (int) call.argument("depth")));
                 break;
             case "distanceTransform":
                 result.success(core.distanceTransform((byte[]) call.argument("byteData"), (int) call.argument("distanceType"), (int) call.argument("maskSize")));
@@ -132,8 +132,11 @@ public class OpenCV4Plugin implements FlutterPlugin, MethodCallHandler {
             case "applyColorMap":
                 result.success(core.applyColorMap((byte[]) call.argument("byteData"), (int) call.argument("colorMap")));
                 break;
-            case "Canny":
-                result.success(core.Canny((byte[]) call.argument("byteData"), (double) call.argument("threshold1"), (double) call.argument("threshold2")));
+            case "canny":
+                result.success(core.canny((byte[]) call.argument("byteData"), (double) call.argument("threshold1"), (double) call.argument("threshold2")));
+                break;
+            case "houghCircles":
+                result.success(core.houghCircles((byte[]) call.argument("byteData"), (int) call.argument("method"), (double) call.argument("dp"), (double) call.argument("minDist"), (double) call.argument("param1"), (double) call.argument("param2"), (int) call.argument("minRadius"), (int) call.argument("maxRadius"), (int) call.argument("centerWidth"), (String) call.argument("centerColor"), (int) call.argument("circleWidth"), (String) call.argument("circleColor")));
                 break;
             default:
                 result.notImplemented();

@@ -24,7 +24,7 @@ class _MyAppState extends State<MyApp> {
   bool preloaded = false;
   bool loaded = false;
   String url =
-      "https://blogmedia.evbstatic.com/wp-content/uploads/wpmulti/sites/8/shutterstock_199419065.jpg";
+      "https://i.pinimg.com/564x/54/e2/ae/54e2aeefa75d031813ec56f6b3efc9ad.jpg";
   String dropdownValue = 'None';
 
   @override
@@ -69,8 +69,8 @@ class _MyAppState extends State<MyApp> {
     try {
       switch (functionName) {
         case 'blur':
-          res = await ImgProc.blur(await file.readAsBytes(), [45, 45], [20, 30],
-              Core.borderReflect);
+          res = await ImgProc.blur(
+              await file.readAsBytes(), [45, 45], [20, 30], Core.borderReflect);
           break;
         case 'GaussianBlur':
           res =
@@ -94,10 +94,6 @@ class _MyAppState extends State<MyApp> {
         case 'filter2D':
           res = await ImgProc.filter2D(await file.readAsBytes(), -1, [2, 2]);
           break;
-        case 'threshold':
-          res = await ImgProc.threshold(
-              await file.readAsBytes(), 80, 255, ImgProc.threshBinary);
-          break;
         case 'dilate':
           res = await ImgProc.dilate(await file.readAsBytes(), [2, 2]);
           break;
@@ -107,6 +103,62 @@ class _MyAppState extends State<MyApp> {
         case 'morphologyEx':
           res = await ImgProc.morphologyEx(
               await file.readAsBytes(), ImgProc.morphTopHat, [5, 5]);
+          break;
+        case 'pyrUp':
+          res = await ImgProc.pyrUp(
+              await file.readAsBytes(), [563*2,375*2], Core.borderDefault);
+          break;
+        case 'pyrDown':
+          res = await ImgProc.pyrDown(
+              await file.readAsBytes(), [563~/2.toInt(),375~/2.toInt()], Core.borderDefault);
+          break;
+        case 'pyrMeanShiftFiltering':
+          res = await ImgProc.pyrMeanShiftFiltering(
+              await file.readAsBytes(), 10, 15);
+          break;
+        case 'threshold':
+          res = await ImgProc.threshold(
+              await file.readAsBytes(), 80, 255, ImgProc.threshBinary);
+          break;
+        case 'adaptiveThreshold':
+          res = await ImgProc.adaptiveThreshold(
+              await file.readAsBytes(), 125, ImgProc.adaptiveThreshMeanC,
+              ImgProc.threshBinary, 11, 12);
+          break;
+        case 'copyMakeBorder':
+          res = await ImgProc.copyMakeBorder(
+              await file.readAsBytes(), 20, 20, 20, 20, Core.borderConstant);
+          break;
+        case 'sobel':
+          res = await ImgProc.sobel(
+              await file.readAsBytes(), -1, 1, 1);
+          break;
+        case 'scharr':
+          res = await ImgProc.scharr(
+              await file.readAsBytes(),  ImgProc.cvSCHARR, 0, 1);
+          break;
+        case 'laplacian':
+          res = await ImgProc.laplacian(
+              await file.readAsBytes(), 10);
+          break;
+        case 'distanceTransform':
+          res = await ImgProc.threshold(
+              await file.readAsBytes(), 80, 255, ImgProc.threshBinary);
+          res = await ImgProc.distanceTransform(
+              await res, ImgProc.distC, 3);
+          break;
+        case 'resize':
+          res = await ImgProc.resize(
+              await file.readAsBytes(), [500,500], 0, 0, ImgProc.interArea);
+          break;
+        case 'applyColorMap':
+          res = await ImgProc.applyColorMap(
+              await file.readAsBytes(), ImgProc.colorMapHot);
+          break;
+        case 'houghCircles':
+          res = await ImgProc.cvtColor(await file.readAsBytes(), 6);
+          res = await ImgProc.houghCircles(
+              await res, 3, 2.1, 0.1, 150, 100, 0, 0);
           break;
         default:
           print("No function selected");
@@ -169,7 +221,20 @@ class _MyAppState extends State<MyApp> {
                       'threshold',
                       'dilate',
                       'erode',
-                      'morphologyEx'
+                      'morphologyEx',
+                      'pyrUp',
+                      'pyrDown',
+                      'pyrMeanShiftFiltering',
+                      'threshold',
+                      'adaptiveThreshold',
+                      'copyMakeBorder',
+                      'sobel',
+                      'scharr',
+                      'laplacian',
+                      'distanceTransform',
+                      'resize',
+                      'applyColorMap',
+                      'houghCircles',
                     ].map<DropdownMenuItem<String>>((String value) {
                       return DropdownMenuItem<String>(
                         value: value,

@@ -7,6 +7,7 @@ import org.opencv.core.Core;
 import org.opencv.core.CvType;
 import org.opencv.core.Mat;
 import org.opencv.core.Point;
+import org.opencv.core.Scalar;
 import org.opencv.core.Size;
 import org.opencv.core.MatOfByte;
 import org.opencv.core.MatOfInt;
@@ -77,7 +78,7 @@ public class CVCore {
     }
 
     @SuppressLint("MissingPermission")
-    public byte[] GaussianBlur(byte[] byteData, ArrayList kernelSize, double sigmaX) {
+    public byte[] gaussianBlur(byte[] byteData, ArrayList kernelSize, double sigmaX) {
         byte[] byteArray = new byte[0];
         try {
             Mat dst = new Mat();
@@ -313,7 +314,7 @@ public class CVCore {
             Mat src = Imgcodecs.imdecode(new MatOfByte(byteData), Imgcodecs.IMREAD_UNCHANGED);
 
             // Size of the new image
-            Size size = new Size((double) kernelSize.get(0), (double) kernelSize.get(1));
+            Size size = new Size((int) kernelSize.get(0), (int) kernelSize.get(1));
 
             // pyrUp operation
             Imgproc.pyrUp(src, dst, size, borderType);
@@ -338,7 +339,7 @@ public class CVCore {
             Mat src = Imgcodecs.imdecode(new MatOfByte(byteData), Imgcodecs.IMREAD_UNCHANGED);
 
             // Size of the new image
-            Size size = new Size((double) kernelSize.get(0), (double) kernelSize.get(1));
+            Size size = new Size((int) kernelSize.get(0), (int) kernelSize.get(1));
 
             // pyrDown operation
             Imgproc.pyrDown(src, dst, size, borderType);
@@ -410,6 +411,9 @@ public class CVCore {
             // Decode image from input byte array
             Mat src = Imgcodecs.imdecode(new MatOfByte(byteData), Imgcodecs.IMREAD_UNCHANGED);
 
+            // Convert the image to Gray
+            Imgproc.cvtColor(src, srcGray, Imgproc.COLOR_BGR2GRAY);
+
             // Adaptive Thresholding
             Imgproc.adaptiveThreshold(srcGray, dst, maxValue, adaptiveMethod, thresholdType, blockSize, constantValue);
 
@@ -447,7 +451,7 @@ public class CVCore {
     }
 
     @SuppressLint("MissingPermission")
-    public byte[] Sobel(byte[] byteData, int depth, int dx, int dy) {
+    public byte[] sobel(byte[] byteData, int depth, int dx, int dy) {
         byte[] byteArray = new byte[0];
         try {
             Mat dst = new Mat();
@@ -469,7 +473,7 @@ public class CVCore {
     }
 
     @SuppressLint("MissingPermission")
-    public byte[] Scharr(byte[] byteData, int depth, int dx, int dy) {
+    public byte[] scharr(byte[] byteData, int depth, int dx, int dy) {
         byte[] byteArray = new byte[0];
         try {
             Mat dst = new Mat();
@@ -491,7 +495,7 @@ public class CVCore {
     }
 
     @SuppressLint("MissingPermission")
-    public byte[] Laplacian(byte[] byteData, int depth) {
+    public byte[] laplacian(byte[] byteData, int depth) {
         byte[] byteArray = new byte[0];
         try {
             Mat dst = new Mat();
@@ -543,7 +547,7 @@ public class CVCore {
             Mat src = Imgcodecs.imdecode(new MatOfByte(byteData), Imgcodecs.IMREAD_UNCHANGED);
 
             // Size of the new image
-            Size size = new Size((double) outputSize.get(0), (double) outputSize.get(1));
+            Size size = new Size((int) outputSize.get(0), (int) outputSize.get(1));
 
             // resize operation
             Imgproc.resize(src, dst, size, fx, fy, interpolation);
@@ -582,7 +586,7 @@ public class CVCore {
     }
 
     @SuppressLint("MissingPermission")
-    public byte[] Canny(byte[] byteData, double threshold1, double threshold2) {
+    public byte[] canny(byte[] byteData, double threshold1, double threshold2) {
         byte[] byteArray = new byte[0];
         try {
             Mat dst = new Mat();
@@ -597,6 +601,47 @@ public class CVCore {
             //Converting the Mat object to MatOfByte
             Imgcodecs.imencode(".jpg", dst, matOfByte);
             byteArray = matOfByte.toArray();
+        } catch (Exception e) {
+            System.out.println("OpenCV Error: " + e.toString());
+        }
+        return byteArray;
+    }
+
+    @SuppressLint("MissingPermission")
+    public byte[] houghCircles(byte[] byteData, int method, double dp, double minDist, double param1, double param2, int minRadius, int maxRadius, int centerWidth, String centerColor, int circleWidth, String circleColor) {
+        byte[] byteArray = new byte[0];
+        try {
+            Mat circles = new Mat();
+            // Decode image from input byte array
+            Mat input = Imgcodecs.imdecode(new MatOfByte(byteData), Imgcodecs.IMREAD_UNCHANGED);
+            //Imgproc.medianBlur(input, input, 5);
+            // resize operation
+            Imgproc.HoughCircles(input, circles, method, dp, minDist, param1, param2, minRadius, maxRadius);
+
+            if (circles.cols() > 0) {
+                for (int x=0; x < (circles.cols()); x++ ) {
+                    double circleVec[] = circles.get(0, x);
+
+                    if (circleVec == null) {
+                        break;
+                    }
+
+                    Point center = new Point((int) circleVec[0], (int) circleVec[1]);
+                    int radius = (int) circleVec[2];
+                    System.out.println("centerColor: " + centerColor);
+                    System.out.println("circleColor: " + circleColor);
+
+                    Imgproc.circle(input, center, 3, new Scalar(Integer.valueOf(centerColor.substring( 1, 3 ), 16 ), Integer.valueOf(centerColor.substring( 3, 5 ), 16 ), Integer.valueOf(centerColor.substring( 5, 7 ), 16 )), centerWidth);
+                    Imgproc.circle(input, center, radius, new Scalar(Integer.valueOf(circleColor.substring( 1, 3 ), 16 ), Integer.valueOf(circleColor.substring( 3, 5 ), 16 ), Integer.valueOf(circleColor.substring( 5, 7 ), 16 )), circleWidth);
+                    System.out.println(x+"th circle");
+                }
+            }
+            //instantiating an empty MatOfByte class
+            MatOfByte matOfByte = new MatOfByte();
+            //Converting the Mat object to MatOfByte
+            Imgcodecs.imencode(".jpg", input, matOfByte);
+            byteArray = matOfByte.toArray();
+//            System.out.println("OUT: " + dst);
         } catch (Exception e) {
             System.out.println("OpenCV Error: " + e.toString());
         }
