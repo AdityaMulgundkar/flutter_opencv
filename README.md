@@ -136,6 +136,7 @@ License Agreement
 For Open Source Computer Vision Library
 (3-clause BSD License)  
 
+Copyright (c) 2020, Aditya Mulgundkar  
 Copyright (C) 2000-2019, Intel Corporation, all rights reserved.  
 Copyright (C) 2009-2011, Willow Garage Inc., all rights reserved.  
 Copyright (C) 2009-2016, NVIDIA Corporation, all rights reserved.  
