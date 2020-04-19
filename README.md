@@ -98,14 +98,6 @@ In case you need to change your OpenCV version (read downgrade) while working wi
 
 Please keep in mind that the above build files (AARs) are provided by someone else - https://github.com/quickbirdstudios/opencv-android. I'm grateful to these guys, but unsure of how often (and far) they would maintain the build repositories, so I'm also working on putting multiple different versions of OpenCV builds on bintray - but it's low on the priority list for now.
 
-## Getting started
-
-### With Flutter OpenCV
-See the `example` directory for a complete sample app using Flutter OpenCV.
-
-### With Flutter
-For help getting started with Flutter, view the online [documentation](https://flutter.io/).
-
 ## Notes
  * iOS not supported currently - I do not own a Mac, so deploying for iOS will be a little slow.
 
@@ -132,6 +124,9 @@ Feel free to contribute to this project.
 
 If you find a bug or want a feature, but don't know how to fix/implement it, please fill an [issue](https://github.com/AdityaMulgundkar/flutter_opencv/issues).  
 If you fixed a bug or implemented a feature, please send a [pull request](https://github.com/AdityaMulgundkar/flutter_opencv/pulls).
+
+## Sponsors
+- [BrowserStack](https://www.browserstack.com/open-source) for providing their App Live & Automate services for free
 
 ## Trademarks
 “Flutter and the related logo are trademarks of Google LLC. We are not endorsed by or affiliated with Google LLC.”
