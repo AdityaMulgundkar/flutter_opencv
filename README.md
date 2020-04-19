@@ -1,6 +1,6 @@
 <img align="right" width="100" height="100" src="flutter_opencv.png">
+
 # flutter_opencv
-<img align="right" width="100" height="100" src="flutter_opencv.png">
 
 A Flutter plug-in providing a binding to OpenCV-4.x.
 
