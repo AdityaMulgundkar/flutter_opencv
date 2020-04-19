@@ -2,7 +2,7 @@
 
 # flutter_opencv
 
-A Flutter plug-in providing a binding to OpenCV-4.x.
+A Flutter™ plug-in providing a binding to OpenCV-4.x.
 
 
 [![Pub](https://img.shields.io/pub/v/opencv.svg)](https://pub.dartlang.org/packages/opencv)
@@ -132,6 +132,9 @@ Feel free to contribute to this project.
 
 If you find a bug or want a feature, but don't know how to fix/implement it, please fill an [issue](https://github.com/AdityaMulgundkar/flutter_opencv/issues).  
 If you fixed a bug or implemented a feature, please send a [pull request](https://github.com/AdityaMulgundkar/flutter_opencv/pulls).
+
+## Trademarks
+“Flutter and the related logo are trademarks of Google LLC. We are not endorsed by or affiliated with Google LLC.”
 
 ## Copyright(s)
 License Agreement
