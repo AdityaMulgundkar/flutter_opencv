@@ -1,8 +1,8 @@
 # flutter_opencv
+<img align="right" width="100" height="100" src="flutter_opencv.png">
 
 A Flutter plug-in providing a binding to OpenCV-4.x.
 
-<img align="right" width="100" height="100" src="flutter_opencv.png">
 
 [![Pub](https://img.shields.io/pub/v/opencv.svg)](https://pub.dartlang.org/packages/opencv)
 [![Docs flutter-opencv.readthedocs.io](https://img.shields.io/website-up-down-green-red/http/flutter-opencv.readthedocs.io.svg)](https://flutter-opencv.readthedocs.io/)
