@@ -128,6 +128,9 @@ If you fixed a bug or implemented a feature, please send a [pull request](https:
 ## Sponsors
 - [BrowserStack](https://www.browserstack.com/open-source) for providing their App Live & Automate services for free
 
+## As featured in:
+- FlutterForce — #Week 73 - https://medium.com/flutterforce/flutterforce-week-73-1da09cbb1b72
+
 ## Trademarks
 “Flutter and the related logo are trademarks of Google LLC. We are not endorsed by or affiliated with Google LLC.”
 
