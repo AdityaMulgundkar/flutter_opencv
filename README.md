@@ -6,7 +6,7 @@ A Flutter™ plug-in providing a binding to OpenCV-4.x.
 
 
 [![Pub](https://img.shields.io/pub/v/opencv.svg)](https://pub.dartlang.org/packages/opencv)
-[![Docs flutter-opencv.readthedocs.io](https://img.shields.io/website-up-down-green-red/http/flutter-opencv.readthedocs.io.svg)](https://flutter-opencv.readthedocs.io/)
+[![Read the Docs](https://readthedocs.org/projects/flutter-opencv/badge/?version=latest)](https://flutter-opencv.readthedocs.io/en/latest/?badge=latest)
 [![Build Status](https://travis-ci.org/AdityaMulgundkar/flutter_opencv.svg?branch=master)](https://travis-ci.org/AdityaMulgundkar/flutter_opencv)
 [![Code Coverage](https://codecov.io/gh/AdityaMulgundkar/flutter_opencv/branch/master/graph/badge.svg)](https://codecov.io/gh/AdityaMulgundkar/flutter_opencv)
 
