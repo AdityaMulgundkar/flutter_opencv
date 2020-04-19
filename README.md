@@ -9,6 +9,7 @@ A Flutter™ plug-in providing a binding to OpenCV-4.x.
 [![Read the Docs](https://readthedocs.org/projects/flutter-opencv/badge/?version=latest)](https://flutter-opencv.readthedocs.io/en/latest/?badge=latest)
 [![Build Status](https://travis-ci.org/AdityaMulgundkar/flutter_opencv.svg?branch=master)](https://travis-ci.org/AdityaMulgundkar/flutter_opencv)
 [![Code Coverage](https://codecov.io/gh/AdityaMulgundkar/flutter_opencv/branch/master/graph/badge.svg)](https://codecov.io/gh/AdityaMulgundkar/flutter_opencv)
+[![Discord Chat](https://img.shields.io/discord/308323056592486420.svg)](https://discord.gg/pnBZrv)
 
 [![Flutter OpenCV](https://media.giphy.com/media/M9UOQmSYQrWgOkYqO8/giphy.gif)](https://pub.dartlang.org/packages/opencv)
 
