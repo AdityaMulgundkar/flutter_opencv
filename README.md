@@ -1,3 +1,4 @@
+<img align="right" width="100" height="100" src="flutter_opencv.png">
 # flutter_opencv
 <img align="right" width="100" height="100" src="flutter_opencv.png">
 
