@@ -1,5 +1,5 @@
 {
-  "name": "dd",
+  "name": "flutter_opencv",
   "dependencies": {
     "jquery": "^3.2.1"
   }

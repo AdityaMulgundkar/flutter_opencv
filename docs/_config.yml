@@ -24,7 +24,7 @@ plugins:
   - jekyll-assets
   - jekyll-sitemap
 
-name: dd
+name: flutter_opencv
 
 permalink: pretty
 
