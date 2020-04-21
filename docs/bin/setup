@@ -6,7 +6,7 @@
 # Exit if any subcommand fails
 set -e
 # Set up Ruby dependencies via Bundler.
-gem install bundler --conservative
+bundle init
 bundle check || bundle install
 bundle update
 
