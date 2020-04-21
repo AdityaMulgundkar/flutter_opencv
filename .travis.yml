@@ -13,7 +13,7 @@ matrix:
             env: JOB=DOCS
             language: ruby
             rvm: [2.4.1]
-            before_install: ['chmod +x ./docs/bin/setup', 'chmod +x ./docs/bin/deploy', 'chmod +x ./docs/bin/automated']
+            before_install: ['chmod +x docs/bin/setup', 'chmod +x docs/bin/deploy', 'chmod +x docs/bin/automated']
             install: [./docs/bin/setup]
             script: ['cd docs', 'bundle exec jekyll build --trace', 'bundle exec htmlproofer ./_site --only-4xx --allow-hash-href']
             after_success: ['test $TRAVIS_PULL_REQUEST == "false" && test $TRAVIS_BRANCH == "master" && "./bin/automated"']
