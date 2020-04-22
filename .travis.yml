@@ -1,4 +1,8 @@
 matrix:
+    fast_finish: true
+    allow_failures:
+        -
+            env: JOB=APK
     include:
         -
             env: JOB=TEST
@@ -10,11 +14,13 @@ matrix:
             after_success: ['coveralls-lcov coverage/lcov.info']
             cache: {directories: [$HOME/.pub-cache]}
         -
-            env: JOB=DOCS
-            language: ruby
-            rvm: [2.4.1]
-            before_install: ['chmod +x docs/bin/setup', 'chmod +x docs/bin/deploy', 'chmod +x docs/bin/automated', 'gem install bundler --conservative']
-            install: [./docs/bin/setup]
-            script: ['cd docs', 'bundle update', 'bundle install', 'bundle exec jekyll build --trace', 'bundle exec htmlproofer ./_site --only-4xx --allow-hash-href']
-            after_success: ['test $TRAVIS_PULL_REQUEST == "false" && test $TRAVIS_BRANCH == "master" && "./bin/automated"']
-            global: [NOKOGIRI_USE_SYSTEM_LIBRARIES=true, {USERNAME: AdityaMulgundkar}, {EMAIL: "adityamulgundkar.nmims\nsecure: hegOvpwoOxE5k1sz992DNGRkQZsIErjKOuClj+qoHBIW92T3U4i0bMrH7++P7Rl/yxx+4WZtctwoDiTPbG/Q33TVSahMqdyttMMLJRse8zD2Xp+uLzY9q8axCNYbcFLOwIakkKo/p/RI55Rd00zDEphbAthqQjdj3xJI7ODPEoDx3Ou7bR4XMhGt16ESeDlHt9aqZvCMGUp4qEgLyxqpIEGPbKrnz9jF3gtb+RXOR5AC/68V+J0eIUWIsOaWCFE5nk1ykokiutJm0VjDBNyuZU0QmimTA2OXQOZGJYGnoWfokWWN1yCvWefl3pDNNAqhuuw4mQ6s90erAStGJ76OMNllg5uaAbqBdYbok2u0R0mDa66UtnXxyuW6z/7/NHzLt7DY3eGOAiaudji/QVHIVz4Dh/cpTS+ClG0FXMZHFUBDv7UPnSnHbdwVguNplHJ1jX8gkYAljqg+XGlMDy/TJ2t833imp7V03iV6eH5euBv+umS+ELFluywXawFME8CrCXL17W/7nDydYv1MyHrCHD2mIt4Uwtd46mWvMn/LGk7XQmdyi16PEOvyOpKS5RhyKjEgt1JiYK8RVEy+j77c1SwtepC5aYGI1yd4mUmEaavoO46TqJhqB/shTEEZiykH3ToARYn4RnqAuzQKrD5nQ/a+ld6vl/cNbMHTm7oXWDg="}]
+            env: JOB=APK
+            os: linux
+            language: android
+            licenses: [android-sdk-preview-license-.+, android-sdk-license-.+, google-gdk-license-.+]
+            android: {components: [tools, platform-tools, build-tools-25.0.3, android-25, sys-img-armeabi-v7a-google_apis-25, extra-android-m2repository, extra-google-m2repository, extra-google-android-support]}
+            jdk: oraclejdk8
+            sudo: false
+            addons: {apt: {sources: [ubuntu-toolchain-r-test], packages: [libstdc++6, fonts-droid]}}
+            before_script: ['wget http://services.gradle.org/distributions/gradle-3.5-bin.zip', 'unzip -qq gradle-3.5-bin.zip', 'export GRADLE_HOME=$PWD/gradle-3.5', 'export PATH=$GRADLE_HOME/bin:$PATH', 'git clone https://github.com/flutter/flutter.git -b stable']
+            script: ['./flutter/bin/flutter -v build apk']
