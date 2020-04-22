@@ -26,7 +26,6 @@ git checkout -b gh-pages
 
 # Build site.
 yarn install --modules-folder ./_assets/yarn
-bundle init
 bundle exec jekyll build
 
 # Delete and move files.
