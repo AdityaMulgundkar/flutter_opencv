@@ -24,7 +24,7 @@ matrix:
             sudo: false
             addons: {apt: {sources: [ubuntu-toolchain-r-test], packages: [libstdc++6, fonts-droid]}}
             before_script: ['wget https://services.gradle.org/distributions/gradle-5.6-bin.zip', 'unzip -qq gradle-5.6-bin.zip', 'export GRADLE_HOME=$PWD/gradle-5.6', 'export PATH=$GRADLE_HOME/bin:$PATH', 'git clone https://github.com/flutter/flutter.git -b stable', 'yes | $ANDROID_HOME/tools/bin/sdkmanager "platforms;android-27"', 'yes | $ANDROID_HOME/tools/bin/sdkmanager "build-tools;27.0.3"']
-            script: ['cd example', '../flutter/bin/flutter -v build apk']
+            script: ['cd example && ../flutter/bin/flutter -v build apk']
     cache:
         directories:
             - $HOME/.pub-cache
