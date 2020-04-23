@@ -23,7 +23,7 @@ matrix:
             jdk: oraclejdk8
             sudo: false
             addons: {apt: {sources: [ubuntu-toolchain-r-test], packages: [libstdc++6, fonts-droid]}}
-            before_script: ['wget https://services.gradle.org/distributions/gradle-3.5-bin.zip', 'unzip -qq gradle-3.5-bin.zip', 'export GRADLE_HOME=$PWD/gradle-3.5', 'export PATH=$GRADLE_HOME/bin:$PATH', 'git clone https://github.com/flutter/flutter.git -b stable', 'wget https://github.com/AdityaMulgundkar/flutter_opencv/releases/download/sdk-license/sdk-license.zip', 'unzip -qq sdk-license.zip', 'mkdir "$ANDROID_HOME/licenses" || true', 'cp ./licenses/* "$ANDROID_HOME/licenses/"', 'echo -e "\n8933bad161af4178b1185d1a37fbf41ea5269c55" > "$ANDROID_HOME/licenses/android-sdk-license"', 'echo -e "\n84831b9409646a918e30573bab4c9c91346d8abd" > "$ANDROID_HOME/licenses/android-sdk-preview-license"']
+            before_script: ['wget https://services.gradle.org/distributions/gradle-5.6-bin.zip', 'unzip -qq gradle-5.6-bin.zip', 'export GRADLE_HOME=$PWD/gradle-5.6', 'export PATH=$GRADLE_HOME/bin:$PATH', 'git clone https://github.com/flutter/flutter.git -b stable']
             script: ['cd example', '../flutter/bin/flutter -v build apk']
     cache:
         directories:
