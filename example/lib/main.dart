@@ -214,7 +214,6 @@ class _MyAppState extends State<MyApp> {
                       'boxFilter',
                       'sqrBoxFilter',
                       'filter2D',
-                      'threshold',
                       'dilate',
                       'erode',
                       'morphologyEx',

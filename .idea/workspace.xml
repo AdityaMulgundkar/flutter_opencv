@@ -5,7 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2a9873cf-3ab3-41b9-8a0a-6ec5c887c8fb" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/src/main/res/values/styles.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/example/lib/main.dart" beforeDir="false" afterPath="$PROJECT_DIR$/example/lib/main.dart" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.dart_tool/" />
     <ignored path="$PROJECT_DIR$/.idea/" />
@@ -22,7 +23,7 @@
   <component name="DefaultGradleProjectSettings">
     <option name="isMigrated" value="true" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="Pixel_2_API_28" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="1375de71" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
@@ -58,11 +59,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/android/build.gradle">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="646">
-              <caret line="38" selection-start-line="38" selection-end-line="38" />
+            <state relative-caret-position="408">
+              <caret line="24" column="24" selection-start-line="24" selection-start-column="24" selection-end-line="24" selection-end-column="24" />
             </state>
           </provider>
         </entry>
@@ -88,11 +89,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/example/lib/main.dart">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1632">
-              <caret line="104" column="69" selection-start-line="104" selection-start-column="69" selection-end-line="104" selection-end-column="69" />
+            <state relative-caret-position="102">
+              <caret line="204" column="49" selection-start-line="204" selection-start-column="49" selection-end-line="204" selection-end-column="49" />
               <folding>
                 <element signature="e#0#17#0" expanded="true" />
               </folding>
@@ -173,10 +174,10 @@
         <option value="$PROJECT_DIR$/lib/core/imgproc.dart" />
         <option value="$PROJECT_DIR$/android/src/main/java/com/mulgundkar/opencv/core/CVCore.java" />
         <option value="$PROJECT_DIR$/lib/core/core.dart" />
-        <option value="$PROJECT_DIR$/example/lib/main.dart" />
         <option value="$PROJECT_DIR$/pubspec.yaml" />
         <option value="$PROJECT_DIR$/CHANGELOG.md" />
         <option value="$PROJECT_DIR$/README.md" />
+        <option value="$PROJECT_DIR$/example/lib/main.dart" />
       </list>
     </option>
   </component>
@@ -289,10 +290,10 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="7" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.25" />
       <window_info id="Captures" order="1" side_tool="true" />
       <window_info id="Structure" order="2" side_tool="true" />
       <window_info id="Image Layers" order="3" />
@@ -302,7 +303,7 @@
       <window_info id="Capture Tool" order="7" />
       <window_info id="Favorites" order="8" side_tool="true" />
       <window_info anchor="bottom" id="Dart Analysis" order="0" sideWeight="0.49946696" weight="0.32936078" />
-      <window_info anchor="bottom" id="Run" order="1" sideWeight="0.49200428" weight="0.44853738" />
+      <window_info active="true" anchor="bottom" id="Run" order="1" sideWeight="0.49200428" visible="true" weight="0.44853738" />
       <window_info anchor="bottom" id="TODO" order="2" weight="0.32936078" />
       <window_info anchor="bottom" id="Android Profiler" order="3" show_stripe_button="false" />
       <window_info anchor="bottom" id="Logcat" order="4" sideWeight="0.49840087" weight="0.32936078" />
@@ -477,16 +478,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/example/lib/main.dart">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1632">
-          <caret line="104" column="69" selection-start-line="104" selection-start-column="69" selection-end-line="104" selection-end-column="69" />
-          <folding>
-            <element signature="e#0#17#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/pubspec.yaml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="85">
@@ -510,8 +501,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/android/build.gradle">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="646">
-          <caret line="38" selection-start-line="38" selection-end-line="38" />
+        <state relative-caret-position="408">
+          <caret line="24" column="24" selection-start-line="24" selection-start-column="24" selection-end-line="24" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/example/lib/main.dart">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="204" column="49" selection-start-line="204" selection-start-column="49" selection-end-line="204" selection-end-column="49" />
+          <folding>
+            <element signature="e#0#17#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
