@@ -19,7 +19,7 @@ matrix:
             os: linux
             language: android
             licenses: [android-sdk-preview-license-.+, android-sdk-license-.+, google-gdk-license-.+]
-            android: {components: [tools, platform-tools, build-tools-29.0.3, android-25, sys-img-armeabi-v7a-google_apis-25, extra-android-m2repository, extra-google-m2repository, extra-google-android-support]}
+            android: {components: [tools, platform-tools, build-tools-29.0.3, android-29, sys-img-armeabi-v7a-google_apis-29, extra-android-m2repository, extra-google-m2repository, extra-google-android-support]}
             jdk: oraclejdk8
             sudo: false
             addons: {apt: {sources: [ubuntu-toolchain-r-test], packages: [libstdc++6, fonts-droid]}}
