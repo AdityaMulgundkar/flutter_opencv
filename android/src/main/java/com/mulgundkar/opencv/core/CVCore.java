@@ -7,6 +7,7 @@ import org.opencv.core.Core;
 import org.opencv.core.CvType;
 import org.opencv.core.Mat;
 import org.opencv.core.Point;
+import org.opencv.core.Rect;
 import org.opencv.core.Scalar;
 import org.opencv.core.Size;
 import org.opencv.core.MatOfByte;
@@ -642,6 +643,38 @@ public class CVCore {
             Imgcodecs.imencode(".jpg", input, matOfByte);
             byteArray = matOfByte.toArray();
 //            System.out.println("OUT: " + dst);
+        } catch (Exception e) {
+            System.out.println("OpenCV Error: " + e.toString());
+        }
+        return byteArray;
+    }
+
+    @SuppressLint("MissingPermission")
+    public byte[] grabCut(byte[] byteData, int itercount) {
+        byte[] byteArray = new byte[0];
+        try {
+            System.out.println("###########################");
+            Mat dst = new Mat();
+            Mat background = new Mat();
+            Mat foreground = new Mat();
+            // Decode image from input byte array
+
+            System.out.println("grabCut start imdecode:");
+            Mat src = Imgcodecs.imdecode(new MatOfByte(byteData), Imgcodecs.IMREAD_UNCHANGED);
+            System.out.println("grabCut end imdecode:");
+
+            Rect rect = new Rect(5,5,20,20);
+
+            System.out.println("grabCut start:");
+            Imgproc.grabCut(src, dst, rect, background, foreground, 1, 2);
+            System.out.println("grabCut end ...");
+
+            //instantiating an empty MatOfByte class
+            MatOfByte matOfByte = new MatOfByte();
+            //Converting the Mat object to MatOfByte
+            Imgcodecs.imencode(".jpg", dst, matOfByte);
+            byteArray = matOfByte.toArray();
+            System.out.println("###########################");
         } catch (Exception e) {
             System.out.println("OpenCV Error: " + e.toString());
         }

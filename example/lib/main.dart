@@ -68,6 +68,10 @@ class _MyAppState extends State<MyApp> {
     // Platform messages may fail, so we use a try/catch PlatformException.
     try {
       switch (functionName) {
+        case 'grabCut':
+          print('grabcut selected');
+          res = await ImgProc.grabCut(await file.readAsBytes(), 1);
+          break;
         case 'blur':
           res = await ImgProc.blur(
               await file.readAsBytes(), [45, 45], [20, 30], Core.borderReflect);

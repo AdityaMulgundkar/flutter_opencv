@@ -840,4 +840,16 @@ class ImgProc {
     /// Function returns the set String as result, use for debugging
     return result;
   }
+
+static Future<dynamic> grabCut(
+    Uint8List byteData, int itercount) async {
+  /// Variable to store operation result
+  final dynamic result = await _channel.invokeMethod('grabCut', {
+    'byteData': byteData,
+    'itercount': itercount
+  });
+
+  /// Function returns the set String as result, use for debugging
+  return result;
+}
 }

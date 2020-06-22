@@ -138,6 +138,9 @@ public class OpenCV4Plugin implements FlutterPlugin, MethodCallHandler {
             case "houghCircles":
                 result.success(core.houghCircles((byte[]) call.argument("byteData"), (int) call.argument("method"), (double) call.argument("dp"), (double) call.argument("minDist"), (double) call.argument("param1"), (double) call.argument("param2"), (int) call.argument("minRadius"), (int) call.argument("maxRadius"), (int) call.argument("centerWidth"), (String) call.argument("centerColor"), (int) call.argument("circleWidth"), (String) call.argument("circleColor")));
                 break;
+            case "grabCut":
+                result.success(core.grabCut((byte[]) call.argument("byteData"), (int) call.argument("itercount")));
+                break;
             default:
                 result.notImplemented();
                 break;
