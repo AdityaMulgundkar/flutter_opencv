@@ -666,7 +666,7 @@ public class CVCore {
             Rect rect = new Rect(5,5,20,20);
 
             System.out.println("grabCut start:");
-            Imgproc.grabCut(src, dst, rect, background, foreground, 1, 2);
+            Imgproc.grabCut(src, dst, rect, background, foreground, 1, 0);  //0 = start with a rectangle
             System.out.println("grabCut end ...");
 
             //instantiating an empty MatOfByte class
