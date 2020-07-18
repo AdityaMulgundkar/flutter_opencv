@@ -23,8 +23,16 @@ class _MyAppState extends State<MyApp> {
   File file;
   bool preloaded = false;
   bool loaded = false;
-  String url =
-      "https://i.pinimg.com/564x/54/e2/ae/54e2aeefa75d031813ec56f6b3efc9ad.jpg";
+
+  List<String> urls = [
+    "https://i.pinimg.com/564x/54/e2/ae/54e2aeefa75d031813ec56f6b3efc9ad.jpg",
+    "https://raw.githubusercontent.com/opencv/opencv/master/samples/data/sudoku.png",
+    "https://raw.githubusercontent.com/opencv/opencv/master/samples/data/left.jpg",
+    "https://raw.githubusercontent.com/opencv/opencv/master/samples/data/left01.jpg",
+    "https://raw.githubusercontent.com/opencv/opencv/master/samples/data/right01.jpg",
+    "https://raw.githubusercontent.com/opencv/opencv/master/samples/data/smarties.png",
+  ];
+  int urlIndex = 0;
   String dropdownValue = 'None';
 
   @override
@@ -35,7 +43,12 @@ class _MyAppState extends State<MyApp> {
   }
 
   Future loadImage() async {
-    file = await DefaultCacheManager().getSingleFile(url);
+    file = await DefaultCacheManager().getSingleFile(urls[urlIndex]);
+
+    if (urlIndex >= urls.length - 1) {
+      urlIndex = 0;
+    } else
+      urlIndex++;
     setState(() {
       image = Image.file(file);
       preloaded = true;
@@ -151,10 +164,42 @@ class _MyAppState extends State<MyApp> {
           res = await ImgProc.applyColorMap(
               await file.readAsBytes(), ImgProc.colorMapHot);
           break;
+        case 'houghLines':
+          res = await ImgProc.canny(await file.readAsBytes(), 50, 200);
+          res = await ImgProc.houghLines(await res,
+              threshold: 300, lineColor: "#ff0000");
+          break;
+        case 'houghLinesProbabilistic':
+          res = await ImgProc.canny(await file.readAsBytes(), 50, 200);
+          res = await ImgProc.houghLinesProbabilistic(await res,
+              threshold: 50,
+              minLineLength: 50,
+              maxLineGap: 10,
+              lineColor: "#ff0000");
+          break;
         case 'houghCircles':
           res = await ImgProc.cvtColor(await file.readAsBytes(), 6);
-          res = await ImgProc.houghCircles(
-              await res, 3, 2.1, 0.1, 150, 100, 0, 0);
+          res = await ImgProc.houghCircles(await res,
+              method: 3,
+              dp: 2.1,
+              minDist: 0.1,
+              param1: 150,
+              param2: 100,
+              minRadius: 0,
+              maxRadius: 0);
+          break;
+        case 'warpPerspectiveTransform':
+        // 4 points are represented as:
+        // P1         P2
+        //
+        //
+        // P3         P4
+        // and stored in a linear array as:
+        // sourcePoints = [P1.x, P1.y, P2.x, P2.y, P3.x, P3.y, P4.x, P4.y]
+          res = await ImgProc.warpPerspectiveTransform(await file.readAsBytes(),
+              sourcePoints: [113, 137, 260, 137, 138, 379, 271, 340],
+              destinationPoints: [0, 0, 612, 0, 0, 459, 612, 459],
+              outputSize: [612, 459]);
           break;
         default:
           print("No function selected");
@@ -179,7 +224,13 @@ class _MyAppState extends State<MyApp> {
           appBar: AppBar(
             title: const Text('Plugin example app'),
           ),
-          body: Column(
+          floatingActionButton: FloatingActionButton(
+            onPressed: () {
+              loadImage();
+            },
+            child: Icon(Icons.refresh),
+          ),
+          body: ListView(
             children: <Widget>[
               Center(
                 child: Text('Running on: $_platformVersion\n'),
@@ -229,7 +280,10 @@ class _MyAppState extends State<MyApp> {
                       'distanceTransform',
                       'resize',
                       'applyColorMap',
+                      'houghLines',
+                      'houghLinesProbabilistic',
                       'houghCircles',
+                      'warpPerspectiveTransform'
                     ].map<DropdownMenuItem<String>>((String value) {
                       return DropdownMenuItem<String>(
                         value: value,

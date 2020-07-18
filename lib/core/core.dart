@@ -1,5 +1,5 @@
 class Core {
-  // C++: enum BorderTypes
+  /// C++: enum BorderTypes
   static final int borderConstant = 0,
       borderReplicate = 1,
       borderReflect = 2,

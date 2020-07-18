@@ -8,3 +8,13 @@ build/
 .idea/workspace.xml
 .idea/workspace.xml
 .idea/workspace.xml
+example/android/.settings/org.eclipse.buildship.core.prefs
+example/android/app/.classpath
+example/android/app/.project
+example/android/app/.settings/org.eclipse.buildship.core.prefs
+example/android/.project
+android/.settings/org.eclipse.buildship.core.prefs
+android/.project
+android/.classpath
+.idea/workspace.xml
+.idea/libraries/Flutter_Plugins.xml

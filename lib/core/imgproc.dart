@@ -1,11 +1,15 @@
 import 'dart:typed_data';
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
+import 'dart:math' as math;
 
 class ImgProc {
+  /// Define method channel
   static const MethodChannel _channel = const MethodChannel('opencv');
 
-  static final int iplBorderConstant = 0,
+  /// Static variable declarations
+  static const int iplBorderConstant = 0,
       iplBorderReplicate = 1,
       iplBorderReflect = 2,
       iplBorderWrap = 3,
@@ -41,8 +45,8 @@ class ImgProc {
       cvThreshOTSU = 8,
       cvThreshTRIANGLE = 16;
 
-// C++: enum Hersheyfonts
-  static final int fontHersheySimpleX = 0,
+  /// Hersheyfonts declarations
+  static const int fontHersheySimpleX = 0,
       fontHersheyPlain = 1,
       fontHersheyDuplex = 2,
       fontHersheyComplex = 3,
@@ -52,14 +56,14 @@ class ImgProc {
       fontHersheyScriptComplex = 7,
       fontItalic = 16;
 
-  // C++: enum interpolationMasks
-  static final int interBits = 5,
+  /// interpolationMasks declarations
+  static const int interBits = 5,
       interBits2 = interBits * 2,
       interTabSize = 1 << interBits,
       interTabSize2 = interTabSize * interTabSize;
 
-// C++: enum MorphTypes
-  static final int morphErode = 0,
+  /// MorphTypes declarations
+  static const int morphErode = 0,
       morphDilate = 1,
       morphOpen = 2,
       morphClose = 3,
@@ -68,30 +72,30 @@ class ImgProc {
       morphBlackHat = 6,
       morphHitMiss = 7;
 
-  // C++: enum floodFillFlags
-  static final int floodFillFixedRange = 1 << 16, floodFillMaskOnly = 1 << 17;
+  /// floodFillFlags declarations
+  static const int floodFillFixedRange = 1 << 16, floodFillMaskOnly = 1 << 17;
 
-  // C++: enum HoughModes
-  static final int houghSTANDARD = 0,
+  /// HoughModes declarations
+  static const int houghSTANDARD = 0,
       houghProbabilistic = 1,
       houghMultiScale = 2,
       houghGradient = 3;
 
-  // C++: enum ConnectedComponentsAlgorithmsTypes
-  static final int cclWU = 0, cclDefault = -1, cclGrana = 1;
+  /// ConnectedComponentsAlgorithmsTypes declarations
+  static const int cclWU = 0, cclDefault = -1, cclGrana = 1;
 
-  // C++: enum retrievalModes
-  static final int retrExternal = 0,
+  /// retrievalModes declarations
+  static const int retrExternal = 0,
       retrList = 1,
       retrCComp = 2,
       retrTree = 3,
       retrFloodFill = 4;
 
-  // C++: enum GrabCutClasses
-  static final int gcBGD = 0, gcFGD = 1, gcPRBGD = 2, gcPRFGD = 3;
+  /// GrabCutClasses declarations
+  static const int gcBGD = 0, gcFGD = 1, gcPRBGD = 2, gcPRFGD = 3;
 
-// C++: enum colormapTypes
-  static final int colorMapAutumn = 0,
+  /// colormapTypes declarations
+  static const int colorMapAutumn = 0,
       colorMapBone = 1,
       colorMapJet = 2,
       colorMapWinter = 3,
@@ -113,8 +117,8 @@ class ImgProc {
       colorMapTwilightShifted = 19,
       colorMapTurbo = 20;
 
-// C++: enum histCompMethods
-  static final int histCmpCORREL = 0,
+  /// histCompMethods declarations
+  static const int histCmpCORREL = 0,
       histCmpChiSqr = 1,
       histCmpInterSect = 2,
       histCmpBhattacharyya = 3,
@@ -122,11 +126,11 @@ class ImgProc {
       histCmpChiSqrAlt = 4,
       histCmpKLDIV = 5;
 
-  // C++: enum LineTypes
-  static final int filled = -1, line4 = 4, line8 = 8, lineAA = 16;
+  /// LineTypes declarations
+  static const int filled = -1, line4 = 4, line8 = 8, lineAA = 16;
 
-  // C++: enum interpolationFlags
-  static final int interNearest = 0,
+  /// interpolationFlags declarations
+  static const int interNearest = 0,
       interLinear = 1,
       interCubic = 2,
       interArea = 3,
@@ -136,20 +140,20 @@ class ImgProc {
       interFillOutliers = 8,
       interInverseMap = 16;
 
-  // C++: enum SpecialFilter
-  static final int filterScharr = -1;
+  /// SpecialFilter declarations
+  static const int filterScharr = -1;
 
-  // C++: enum ContourApproximationModes
-  static final int chainApproxN = 1,
+  /// ContourApproximationModes declarations
+  static const int chainApproxN = 1,
       chainApproxSimple = 2,
       chainApproxTC89L1 = 3,
       chainApproxTC89KCOS = 4;
 
-  // C++: enum RectanglesIntersectTypes
-  static final int intersectN = 0, intersectPartial = 1, intersectFull = 2;
+  /// RectanglesIntersectTypes declarations
+  static const int intersectN = 0, intersectPartial = 1, intersectFull = 2;
 
-  // C++: enum <unnamed>
-  static final int cvGAUSSIAN5x5 = 7,
+  /// <unnamed> declarations
+  static const int cvGAUSSIAN5x5 = 7,
       cvSCHARR = -1,
       cvMAXSOBELKSIZE = 7,
       cvRGBA2mRGBA = 125,
@@ -190,16 +194,16 @@ class ImgProc {
       cvHoughMULTISCALE = 2,
       cvHoughGradient = 3;
 
-// C++: enum ShapeMatchModes
-  static final int contoursMatchI1 = 1,
+  /// ShapeMatchModes declarations
+  static const int contoursMatchI1 = 1,
       contoursMatchI2 = 2,
       contoursMatchI3 = 3;
 
-  // C++: enum WarpPolarMode
-  static final int warpPolarLinear = 0, warpPolarLog = 256;
+  /// WarpPolarMode declarations
+  static const int warpPolarLinear = 0, warpPolarLog = 256;
 
-  // C++: enum ColorConversionCodes
-  static final int colorBGR2BGRA = 0,
+  /// ColorConversionCodes declarations
+  static const int colorBGR2BGRA = 0,
       colorRGB2RGBA = colorBGR2BGRA,
       colorBGRA2BGR = 1,
       colorRGBA2RGB = colorBGRA2BGR,
@@ -406,11 +410,11 @@ class ImgProc {
       colorBayerGR2RGBA = colorBayerGB2BGRA,
       colorColorcvTMAX = 143;
 
-  // C++: enum LineSegmentDetectorModes
-  static final int lsdRefineN = 0, lsdRefineSTD = 1, lsdRefineADV = 2;
+  /// LineSegmentDetectorModes declarations
+  static const int lsdRefineN = 0, lsdRefineSTD = 1, lsdRefineADV = 2;
 
-  // C++: enum thresholdTypes
-  static final int threshBinary = 0,
+  /// thresholdTypes declarations
+  static const int threshBinary = 0,
       threshBinaryInv = 1,
       threshTrunc = 2,
       threshToZero = 3,
@@ -419,29 +423,29 @@ class ImgProc {
       threshOTSU = 8,
       threshTriangle = 16;
 
-  // C++: enum AdaptivethresholdTypes
-  static final int adaptiveThreshMeanC = 0, adaptiveThreshGaussianC = 1;
+  /// AdaptivethresholdTypes declarations
+  static const int adaptiveThreshMeanC = 0, adaptiveThreshGaussianC = 1;
 
-  // C++: enum MorphShapesc
-  static final int cvShapeRect = 0,
+  /// MorphShapesc declarations
+  static const int cvShapeRect = 0,
       cvShapeCross = 1,
       cvShapeEllipse = 2,
       cvShapeCustom = 100;
 
-// C++: enum GrabCutModes
-  static final int gcInitWithRect = 0,
+  /// GrabCutModes declarations
+  static const int gcInitWithRect = 0,
       gcInitWithMask = 1,
       gcEVAL = 2,
       gcEvalFreezeModel = 3;
 
-  // C++: enum MorphShapes
-  static final int morphRECT = 0, morphCross = 1, morphEllipse = 2;
+  /// MorphShapes declarations
+  static const int morphRECT = 0, morphCross = 1, morphEllipse = 2;
 
-  // C++: enum DistanceTransformLabelTypes
-  static final int distLabelCComp = 0, distLabelPixel = 1;
+  /// DistanceTransformLabelTypes declarations
+  static const int distLabelCComp = 0, distLabelPixel = 1;
 
-  // C++: enum DistanceTypes
-  static final int distUSER = -1,
+  /// DistanceTypes declarations
+  static const int distUSER = -1,
       distL1 = 1,
       distL2 = 2,
       distC = 3,
@@ -450,34 +454,34 @@ class ImgProc {
       distWelsch = 6,
       distHuber = 7;
 
-  // C++: enum TemplateMatchModes
-  static final int tmSQDiff = 0,
+  /// TemplateMatchModes declarations
+  static const int tmSQDiff = 0,
       tmSQDiffNormed = 1,
       tmCCORR = 2,
       tmCCORRNormed = 3,
       tmCCOEff = 4,
       tmCCOEffNormed = 5;
 
-  // C++: enum DistanceTransformMasks
-  static final int distMask3 = 3, distMask5 = 5, distMaskPrecise = 0;
+  /// DistanceTransformMasks declarations
+  static const int distMask3 = 3, distMask5 = 5, distMaskPrecise = 0;
 
-// C++: enum ConnectedComponentsTypes
-  static final int ccStatLeft = 0,
+  /// ConnectedComponentsTypes declarations
+  static const int ccStatLeft = 0,
       ccStatTop = 1,
       ccStatWidth = 2,
       ccStatHeight = 3,
       ccStatArea = 4,
       ccStatMax = 5;
 
-  // C++: enum SmoothMethodc
-  static final int cvBlurNoScale = 0,
+  /// SmoothMethodc declarations
+  static const int cvBlurNoScale = 0,
       cvBlur = 1,
       cvGaussian = 2,
       cvMedian = 3,
       cvBilateral = 4;
 
-  // C++: enum MarkerTypes
-  static final int markerCross = 0,
+  /// MarkerTypes declarations
+  static const int markerCross = 0,
       markerTiltedCross = 1,
       markerStar = 2,
       markerDiamond = 3,
@@ -491,7 +495,7 @@ class ImgProc {
     final dynamic result = await _channel.invokeMethod(
         'cvtColor', {'byteData': byteData, 'outputType': outputType});
 
-    /// Function returns the set String as result, use for debugging
+    /// Function returns the response from method channel
     return result;
   }
 
@@ -506,7 +510,7 @@ class ImgProc {
       'borderType': borderType
     });
 
-    /// Function returns the set String as result, use for debugging
+    /// Function returns the response from method channel
     return result;
   }
 
@@ -517,7 +521,7 @@ class ImgProc {
     final dynamic result = await _channel.invokeMethod('gaussianBlur',
         {'byteData': byteData, 'kernelSize': kernelSize, 'sigmaX': sigmaX});
 
-    /// Function returns the set String as result, use for debugging
+    /// Function returns the response from method channel
     return result;
   }
 
@@ -527,11 +531,11 @@ class ImgProc {
     final dynamic result = await _channel.invokeMethod(
         'medianBlur', {'byteData': byteData, 'kernelSize': kernelSize});
 
-    /// Function returns the set String as result, use for debugging
+    /// Function returns the response from method channel
     return result;
   }
 
-  /// Function takes input file's byte array data & size of the kernel box.
+  /// Function takes input file's byte array data, diameter of the filter circle, sigma values for its color & space, & it's border type.
   static Future<dynamic> bilateralFilter(Uint8List byteData, int diameter,
       int sigmaColor, int sigmaSpace, int borderType) async {
     /// Variable to store operation result
@@ -543,11 +547,11 @@ class ImgProc {
       'borderType': borderType
     });
 
-    /// Function returns the set String as result, use for debugging
+    /// Function returns the response from method channel
     return result;
   }
 
-  /// Function takes input file's byte array data & size of the kernel box.
+  /// Function takes input file's byte array data, output depth of the filter, it's kernel size & anchor point, a boolean for normalization & it's border type.
   static Future<dynamic> boxFilter(
       Uint8List byteData,
       int outputDepth,
@@ -565,11 +569,11 @@ class ImgProc {
       'borderType': borderType
     });
 
-    /// Function returns the set String as result, use for debugging
+    /// Function returns the response from method channel
     return result;
   }
 
-  /// Function takes input file's byte array data & size of the kernel box.
+  /// Function takes input file's byte array data, depth of the output matrix & size of the kernel box.
   static Future<dynamic> sqrBoxFilter(
       Uint8List byteData, int outputDepth, List<double> kernelSize) async {
     /// Variable to store operation result
@@ -579,11 +583,11 @@ class ImgProc {
       'kernelSize': kernelSize
     });
 
-    /// Function returns the set String as result, use for debugging
+    /// Function returns the response from method channel
     return result;
   }
 
-  /// Function takes input file's byte array data & size of the kernel box.
+  /// Function takes input file's byte array data, depth of the output matrix & size of the kernel box.
   static Future<dynamic> filter2D(
       Uint8List byteData, int outputDepth, List<int> kernelSize) async {
     /// Variable to store operation result
@@ -593,7 +597,7 @@ class ImgProc {
       'kernelSize': kernelSize
     });
 
-    /// Function returns the set String as result, use for debugging
+    /// Function returns the response from method channel
     return result;
   }
 
@@ -604,7 +608,7 @@ class ImgProc {
     final dynamic result = await _channel.invokeMethod(
         'dilate', {'byteData': byteData, 'kernelSize': kernelSize});
 
-    /// Function returns the set String as result, use for debugging
+    /// Function returns the response from method channel
     return result;
   }
 
@@ -614,11 +618,11 @@ class ImgProc {
     final dynamic result = await _channel.invokeMethod(
         'erode', {'byteData': byteData, 'kernelSize': kernelSize});
 
-    /// Function returns the set String as result, use for debugging
+    /// Function returns the response from method channel
     return result;
   }
 
-  /// Function takes input file's byte array data & size of the kernel box.
+  /// Function takes input file's byte array data, type of the operation to perform & size of the kernel box.
   static Future<dynamic> morphologyEx(
       Uint8List byteData, int operation, List<int> kernelSize) async {
     /// Variable to store operation result
@@ -628,11 +632,11 @@ class ImgProc {
       'kernelSize': kernelSize
     });
 
-    /// Function returns the set String as result, use for debugging
+    /// Function returns the response from method channel
     return result;
   }
 
-  /// Function takes input file's byte array data & size of the kernel box.
+  /// Function takes input file's byte array data, size of the kernel box & it's border type.
   static Future<dynamic> pyrUp(
       Uint8List byteData, List<int> kernelSize, int borderType) async {
     /// Variable to store operation result
@@ -642,11 +646,11 @@ class ImgProc {
       'borderType': borderType
     });
 
-    /// Function returns the set String as result, use for debugging
+    /// Function returns the response from method channel
     return result;
   }
 
-  /// Function takes input file's byte array data & size of the kernel box.
+  /// Function takes input file's byte array data, size of the kernel box & it's border type.
   static Future<dynamic> pyrDown(
       Uint8List byteData, List<int> kernelSize, int borderType) async {
     /// Variable to store operation result
@@ -656,10 +660,11 @@ class ImgProc {
       'borderType': borderType
     });
 
-    /// Function returns the set String as result, use for debugging
+    /// Function returns the response from method channel
     return result;
   }
 
+  /// Function takes input file's byte array data, radius of the spatial & color windows.
   static Future<dynamic> pyrMeanShiftFiltering(Uint8List byteData,
       double spatialWindowRadius, double colorWindowRadius) async {
     /// Variable to store operation result
@@ -670,11 +675,11 @@ class ImgProc {
       'colorWindowRadius': colorWindowRadius
     });
 
-    /// Function returns the set String as result, use for debugging
+    /// Function returns the response from method channel
     return result;
   }
 
-  /// Function takes input file's path & location choice
+  /// Function takes input file's byte array data, threshold value, maximum threshold value & type of threshold.
   static Future<dynamic> threshold(Uint8List byteData, double thresholdValue,
       double maxThresholdValue, int thresholdType) async {
     /// Variable to store operation result
@@ -685,11 +690,11 @@ class ImgProc {
       'thresholdType': thresholdType
     });
 
-    /// Function returns the set String as result, use for debugging
+    /// Function returns the response from method channel
     return result;
   }
 
-  /// Function takes input file's path & location choice
+  /// Function takes input file's byte array data, maximum value of threshold, int for adaptive method type, type of threshold, size of block & a constant int value which will be subtracted from the mean.
   static Future<dynamic> adaptiveThreshold(
       Uint8List byteData,
       double maxValue,
@@ -707,10 +712,11 @@ class ImgProc {
       'constantValue': constantValue
     });
 
-    /// Function returns the set String as result, use for debugging
+    /// Function returns the response from method channel
     return result;
   }
 
+  /// Function takes input file's byte array data, top, bottom, left, right integer values & it's border type.
   static Future<dynamic> copyMakeBorder(Uint8List byteData, int top, int bottom,
       int left, int right, int borderType) async {
     /// Variable to store operation result
@@ -723,39 +729,43 @@ class ImgProc {
       'borderType': borderType
     });
 
-    /// Function returns the set String as result, use for debugging
+    /// Function returns the response from method channel
     return result;
   }
 
+  /// Function takes input file's byte array data, depth of destination image & order of derivative x and y values.
   static Future<dynamic> sobel(
       Uint8List byteData, int depth, int dx, int dy) async {
     /// Variable to store operation result
     final dynamic result = await _channel.invokeMethod(
         'sobel', {'byteData': byteData, 'depth': depth, 'dx': dx, 'dy': dy});
 
-    /// Function returns the set String as result, use for debugging
+    /// Function returns the response from method channel
     return result;
   }
 
+  /// Function takes input file's byte array data, depth of destination image & order of derivative x and y values.
   static Future<dynamic> scharr(
       Uint8List byteData, int depth, int dx, int dy) async {
     /// Variable to store operation result
     final dynamic result = await _channel.invokeMethod(
         'scharr', {'byteData': byteData, 'depth': depth, 'dx': dx, 'dy': dy});
 
-    /// Function returns the set String as result, use for debugging
+    /// Function returns the response from method channel
     return result;
   }
 
+  /// Function takes input file's byte array data & depth of destination image.
   static Future<dynamic> laplacian(Uint8List byteData, int depth) async {
     /// Variable to store operation result
     final dynamic result = await _channel
         .invokeMethod('laplacian', {'byteData': byteData, 'depth': depth});
 
-    /// Function returns the set String as result, use for debugging
+    /// Function returns the response from method channel
     return result;
   }
 
+  /// Function takes input file's byte array data, type of distance & size of mask.
   static Future<dynamic> distanceTransform(
       Uint8List byteData, int distanceType, int maskSize) async {
     /// Variable to store operation result
@@ -765,12 +775,13 @@ class ImgProc {
       'maskSize': maskSize
     });
 
-    /// Function returns the set String as result, use for debugging
+    /// Function returns the response from method channel
     return result;
   }
 
 //  static Future<dynamic> warpAffine() async {}
 
+  /// Function takes input file's byte array data, output size, values of fx & fy & interpolation value.
   static Future<dynamic> resize(Uint8List byteData, List<int> outputSize,
       double fx, double fy, int interpolation) async {
     /// Variable to store operation result
@@ -782,19 +793,21 @@ class ImgProc {
       'interpolation': interpolation
     });
 
-    /// Function returns the set String as result, use for debugging
+    /// Function returns the response from method channel
     return result;
   }
 
+  /// Function takes input file's byte array data & type of color map.
   static Future<dynamic> applyColorMap(Uint8List byteData, int colorMap) async {
     /// Variable to store operation result
     final dynamic result = await _channel.invokeMethod(
         'applyColorMap', {'byteData': byteData, 'colorMap': colorMap});
 
-    /// Function returns the set String as result, use for debugging
+    /// Function returns the response from method channel
     return result;
   }
 
+  /// Function takes input file's byte array data & the two threshold values.
   static Future<dynamic> canny(
       Uint8List byteData, double threshold1, double threshold2) async {
     /// Variable to store operation result
@@ -804,23 +817,89 @@ class ImgProc {
       'threshold2': threshold2
     });
 
-    /// Function returns the set String as result, use for debugging
+    /// Function returns the response from method channel
     return result;
   }
 
-  static Future<dynamic> houghCircles(
-      Uint8List byteData,
-      int method,
-      double dp,
-      double minDist,
-      double param1,
-      double param2,
-      int minRadius,
-      int maxRadius,
-      [int centerWidth = 2,
+  /// Function takes input file's byte array data, values of rho & theta, threshold value, srn & stn values & min & max theta values.
+  static Future<dynamic> houghLines(Uint8List byteData,
+      {double rho = 1,
+      double theta = math.pi / 180,
+      int threshold = 1,
+      double srn = 0,
+      double stn = 0,
+      double minTheta = 0,
+      double maxTheta = math.pi,
+      String lineColor = "#ffffff",
+      int lineThickness = 3,
+      int lineType = line8,
+      int shift = 0}) async {
+    /// Variable to store operation result
+    print("calling houghlines: " + math.pi.toString());
+    final dynamic result = await _channel.invokeMethod('houghLines', {
+      'byteData': byteData,
+      'rho': rho,
+      'theta': theta,
+      'threshold': threshold,
+      'srn': srn,
+      'stn': stn,
+      'minTheta': minTheta,
+      'maxTheta': maxTheta,
+      'lineColor': lineColor,
+      'lineThickness': lineThickness,
+      'lineType': lineType,
+      'shift': shift,
+    });
+
+    /// Function returns the response from method channel
+    return result;
+  }
+
+  /// Function takes input file's byte array data, values of rho & theta, threshold value, srn & stn values & min & max theta values.
+  static Future<dynamic> houghLinesProbabilistic(Uint8List byteData,
+      {double rho = 1,
+      double theta = math.pi / 180,
+      int threshold = 1,
+      double minLineLength = 0,
+      double maxLineGap = 0,
+      String lineColor = "#ffffff",
+      int lineThickness = 3,
+      int lineType = line8,
+      int shift = 0}) async {
+    /// Variable to store operation result
+    print("calling houghlines: " + math.pi.toString());
+    final dynamic result =
+        await _channel.invokeMethod('houghLinesProbabilistic', {
+      'byteData': byteData,
+      'rho': rho,
+      'theta': theta,
+      'threshold': threshold,
+      'minLineLength': minLineLength,
+      'maxLineGap': maxLineGap,
+      'lineColor': lineColor,
+      'lineThickness': lineThickness,
+      'lineType': lineType,
+      'shift': shift,
+    });
+
+    /// Function returns the response from method channel
+    return result;
+  }
+
+  /// Function takes input file's byte array data, accumulator value dp, min distance value between two circles, method specific parameters 1 & 2,
+  /// min & max radius of the circles, & optional values for the circle center width, center color, circle width & circle color.
+  static Future<dynamic> houghCircles(Uint8List byteData,
+      {@required int method,
+      @required double dp,
+      @required double minDist,
+      @required double param1,
+      @required double param2,
+      @required int minRadius,
+      @required int maxRadius,
+      int centerWidth = 2,
       String centerColor = "#ff0000",
       int circleWidth = 2,
-      String circleColor = "#ffffff"]) async {
+      String circleColor = "#ffffff"}) async {
     /// Variable to store operation result
     final dynamic result = await _channel.invokeMethod('houghCircles', {
       'byteData': byteData,
@@ -837,7 +916,31 @@ class ImgProc {
       'circleColor': circleColor,
     });
 
-    /// Function returns the set String as result, use for debugging
+    /// Function returns the response from method channel
+    return result;
+  }
+
+  /// Function takes input file's byte array data, source points & destination points.
+  ///   4 points are represented as:
+  ///   P1         P2
+  ///
+  ///
+  ///   P3         P4
+  ///   and stored in a linear array as:
+  ///   sourcePoints = [P1.x, P1.y, P2.x, P2.y, P3.x, P3.y, P4.x, P4.y]
+  ///   similarly for destinationPoints as well
+  static Future<dynamic> warpPerspectiveTransform(Uint8List byteData,
+      {@required List sourcePoints, @required List destinationPoints, @required List<double> outputSize}) async {
+    /// Variable to store operation result
+    final dynamic result =
+        await _channel.invokeMethod('warpPerspectiveTransform', {
+      'byteData': byteData,
+      'sourcePoints': sourcePoints,
+      'destinationPoints': destinationPoints,
+      'outputSize': outputSize
+    });
+
+    /// Function returns the response from method channel
     return result;
   }
 }

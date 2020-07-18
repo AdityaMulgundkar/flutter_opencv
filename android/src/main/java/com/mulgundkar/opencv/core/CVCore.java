@@ -11,6 +11,7 @@ import org.opencv.core.Scalar;
 import org.opencv.core.Size;
 import org.opencv.core.MatOfByte;
 import org.opencv.core.MatOfInt;
+import org.opencv.core.MatOfPoint2f;
 import org.opencv.imgcodecs.Imgcodecs;
 import org.opencv.imgproc.Imgproc;
 
@@ -42,9 +43,9 @@ public class CVCore {
             // Convert the image color
             Imgproc.cvtColor(src, dst, outputType);
 
-            //instantiating an empty MatOfByte class
+            // instantiating an empty MatOfByte class
             MatOfByte matOfByte = new MatOfByte();
-            //Converting the Mat object to MatOfByte
+            // Converting the Mat object to MatOfByte
             Imgcodecs.imencode(".jpg", dst, matOfByte);
             byteArray = matOfByte.toArray();
         } catch (Exception e) {
@@ -66,9 +67,9 @@ public class CVCore {
             // Convert the image to Gray
             Imgproc.blur(src, dst, size, point, borderType);
 
-            //instantiating an empty MatOfByte class
+            // instantiating an empty MatOfByte class
             MatOfByte matOfByte = new MatOfByte();
-            //Converting the Mat object to MatOfByte
+            // Converting the Mat object to MatOfByte
             Imgcodecs.imencode(".jpg", dst, matOfByte);
             byteArray = matOfByte.toArray();
         } catch (Exception e) {
@@ -89,9 +90,9 @@ public class CVCore {
             // Convert the image to Gray
             Imgproc.GaussianBlur(src, dst, size, sigmaX);
 
-            //instantiating an empty MatOfByte class
+            // instantiating an empty MatOfByte class
             MatOfByte matOfByte = new MatOfByte();
-            //Converting the Mat object to MatOfByte
+            // Converting the Mat object to MatOfByte
             Imgcodecs.imencode(".jpg", dst, matOfByte);
             byteArray = matOfByte.toArray();
         } catch (Exception e) {
@@ -111,9 +112,9 @@ public class CVCore {
             // Convert the image to Gray
             Imgproc.medianBlur(src, dst, kernelSize);
 
-            //instantiating an empty MatOfByte class
+            // instantiating an empty MatOfByte class
             MatOfByte matOfByte = new MatOfByte();
-            //Converting the Mat object to MatOfByte
+            // Converting the Mat object to MatOfByte
             Imgcodecs.imencode(".jpg", dst, matOfByte);
             byteArray = matOfByte.toArray();
         } catch (Exception e) {
@@ -133,9 +134,9 @@ public class CVCore {
             // Convert the image to Gray
             Imgproc.bilateralFilter(src, dst, diameter, sigmaColor, sigmaSpace, borderType);
 
-            //instantiating an empty MatOfByte class
+            // instantiating an empty MatOfByte class
             MatOfByte matOfByte = new MatOfByte();
-            //Converting the Mat object to MatOfByte
+            // Converting the Mat object to MatOfByte
             Imgcodecs.imencode(".jpg", dst, matOfByte);
             byteArray = matOfByte.toArray();
         } catch (Exception e) {
@@ -145,7 +146,8 @@ public class CVCore {
     }
 
     @SuppressLint("MissingPermission")
-    public byte[] boxFilter(byte[] byteData, int outputDepth, ArrayList kernelSize, ArrayList anchorPoint, boolean normalize, int borderType) {
+    public byte[] boxFilter(byte[] byteData, int outputDepth, ArrayList kernelSize, ArrayList anchorPoint,
+            boolean normalize, int borderType) {
         byte[] byteArray = new byte[0];
         try {
             Mat dst = new Mat();
@@ -158,9 +160,9 @@ public class CVCore {
             // Convert the image to Gray
             Imgproc.boxFilter(src, dst, outputDepth, size, point, normalize, borderType);
 
-            //instantiating an empty MatOfByte class
+            // instantiating an empty MatOfByte class
             MatOfByte matOfByte = new MatOfByte();
-            //Converting the Mat object to MatOfByte
+            // Converting the Mat object to MatOfByte
             Imgcodecs.imencode(".jpg", dst, matOfByte);
             byteArray = matOfByte.toArray();
         } catch (Exception e) {
@@ -182,9 +184,9 @@ public class CVCore {
             // Convert the image to Gray
             Imgproc.sqrBoxFilter(src, dst, outputDepth, size);
 
-            //instantiating an empty MatOfByte class
+            // instantiating an empty MatOfByte class
             MatOfByte matOfByte = new MatOfByte();
-            //Converting the Mat object to MatOfByte
+            // Converting the Mat object to MatOfByte
             Imgcodecs.imencode(".jpg", dst, matOfByte);
             byteArray = matOfByte.toArray();
         } catch (Exception e) {
@@ -204,22 +206,22 @@ public class CVCore {
             // Creating kernel matrix
             Mat kernel = Mat.ones((int) kernelSize.get(0), (int) kernelSize.get(1), CvType.CV_32F);
 
-            for(int i = 0; i<kernel.rows(); i++) {
-                for(int j = 0; j<kernel.cols(); j++) {
+            for (int i = 0; i < kernel.rows(); i++) {
+                for (int j = 0; j < kernel.cols(); j++) {
                     double[] m = kernel.get(i, j);
 
-                    for(int k = 1; k<m.length; k++) {
-                        m[k] = m[k]/(2 * 2);
+                    for (int k = 1; k < m.length; k++) {
+                        m[k] = m[k] / (2 * 2);
                     }
-                    kernel.put(i,j, m);
+                    kernel.put(i, j, m);
                 }
             }
             // Convert the image to Gray
             Imgproc.filter2D(src, dst, outputDepth, kernel);
 
-            //instantiating an empty MatOfByte class
+            // instantiating an empty MatOfByte class
             MatOfByte matOfByte = new MatOfByte();
-            //Converting the Mat object to MatOfByte
+            // Converting the Mat object to MatOfByte
             Imgcodecs.imencode(".jpg", dst, matOfByte);
             byteArray = matOfByte.toArray();
         } catch (Exception e) {
@@ -238,14 +240,15 @@ public class CVCore {
 
             // Preparing the kernel matrix object
             Mat kernel = Imgproc.getStructuringElement(Imgproc.MORPH_RECT,
-                    new  Size(((int) kernelSize.get(0)*(int) kernelSize.get(1)) + 1, ((int) kernelSize.get(0)*(int) kernelSize.get(1))+1));
+                    new Size(((int) kernelSize.get(0) * (int) kernelSize.get(1)) + 1,
+                            ((int) kernelSize.get(0) * (int) kernelSize.get(1)) + 1));
 
             // Convert the image to Gray
             Imgproc.dilate(src, dst, kernel);
 
-            //instantiating an empty MatOfByte class
+            // instantiating an empty MatOfByte class
             MatOfByte matOfByte = new MatOfByte();
-            //Converting the Mat object to MatOfByte
+            // Converting the Mat object to MatOfByte
             Imgcodecs.imencode(".jpg", dst, matOfByte);
             byteArray = matOfByte.toArray();
         } catch (Exception e) {
@@ -264,14 +267,15 @@ public class CVCore {
 
             // Preparing the kernel matrix object
             Mat kernel = Imgproc.getStructuringElement(Imgproc.MORPH_RECT,
-                    new  Size(((int) kernelSize.get(0)*(int) kernelSize.get(1)) + 1, ((int) kernelSize.get(0)*(int) kernelSize.get(1))+1));
+                    new Size(((int) kernelSize.get(0) * (int) kernelSize.get(1)) + 1,
+                            ((int) kernelSize.get(0) * (int) kernelSize.get(1)) + 1));
 
             // Convert the image to Gray
             Imgproc.erode(src, dst, kernel);
 
-            //instantiating an empty MatOfByte class
+            // instantiating an empty MatOfByte class
             MatOfByte matOfByte = new MatOfByte();
-            //Converting the Mat object to MatOfByte
+            // Converting the Mat object to MatOfByte
             Imgcodecs.imencode(".jpg", dst, matOfByte);
             byteArray = matOfByte.toArray();
         } catch (Exception e) {
@@ -289,14 +293,14 @@ public class CVCore {
             Mat src = Imgcodecs.imdecode(new MatOfByte(byteData), Imgcodecs.IMREAD_UNCHANGED);
 
             // Creating kernel matrix
-            Mat kernel = Mat.ones((int) kernelSize.get(0),(int) kernelSize.get(0), CvType.CV_32F);
+            Mat kernel = Mat.ones((int) kernelSize.get(0), (int) kernelSize.get(0), CvType.CV_32F);
 
             // Morphological operation
             Imgproc.morphologyEx(src, dst, operation, kernel);
 
-            //instantiating an empty MatOfByte class
+            // instantiating an empty MatOfByte class
             MatOfByte matOfByte = new MatOfByte();
-            //Converting the Mat object to MatOfByte
+            // Converting the Mat object to MatOfByte
             Imgcodecs.imencode(".jpg", dst, matOfByte);
             byteArray = matOfByte.toArray();
         } catch (Exception e) {
@@ -319,9 +323,9 @@ public class CVCore {
             // pyrUp operation
             Imgproc.pyrUp(src, dst, size, borderType);
 
-            //instantiating an empty MatOfByte class
+            // instantiating an empty MatOfByte class
             MatOfByte matOfByte = new MatOfByte();
-            //Converting the Mat object to MatOfByte
+            // Converting the Mat object to MatOfByte
             Imgcodecs.imencode(".jpg", dst, matOfByte);
             byteArray = matOfByte.toArray();
         } catch (Exception e) {
@@ -344,9 +348,9 @@ public class CVCore {
             // pyrDown operation
             Imgproc.pyrDown(src, dst, size, borderType);
 
-            //instantiating an empty MatOfByte class
+            // instantiating an empty MatOfByte class
             MatOfByte matOfByte = new MatOfByte();
-            //Converting the Mat object to MatOfByte
+            // Converting the Mat object to MatOfByte
             Imgcodecs.imencode(".jpg", dst, matOfByte);
             byteArray = matOfByte.toArray();
         } catch (Exception e) {
@@ -366,9 +370,9 @@ public class CVCore {
             // pyrMeanShiftFiltering operation
             Imgproc.pyrMeanShiftFiltering(src, dst, spatialWindowRadius, colorWindowRadius);
 
-            //instantiating an empty MatOfByte class
+            // instantiating an empty MatOfByte class
             MatOfByte matOfByte = new MatOfByte();
-            //Converting the Mat object to MatOfByte
+            // Converting the Mat object to MatOfByte
             Imgcodecs.imencode(".jpg", dst, matOfByte);
             byteArray = matOfByte.toArray();
         } catch (Exception e) {
@@ -391,9 +395,9 @@ public class CVCore {
             // Thresholding
             Imgproc.threshold(srcGray, dst, thresholdValue, maxThresholdValue, thresholdType);
 
-            //instantiating an empty MatOfByte class
+            // instantiating an empty MatOfByte class
             MatOfByte matOfByte = new MatOfByte();
-            //Converting the Mat object to MatOfByte
+            // Converting the Mat object to MatOfByte
             Imgcodecs.imencode(".jpg", dst, matOfByte);
             byteArray = matOfByte.toArray();
         } catch (Exception e) {
@@ -403,7 +407,8 @@ public class CVCore {
     }
 
     @SuppressLint("MissingPermission")
-    public byte[] adaptiveThreshold(byte[] byteData, double maxValue, int adaptiveMethod, int thresholdType, int blockSize, double constantValue) {
+    public byte[] adaptiveThreshold(byte[] byteData, double maxValue, int adaptiveMethod, int thresholdType,
+            int blockSize, double constantValue) {
         byte[] byteArray = new byte[0];
         try {
             Mat srcGray = new Mat();
@@ -417,9 +422,9 @@ public class CVCore {
             // Adaptive Thresholding
             Imgproc.adaptiveThreshold(srcGray, dst, maxValue, adaptiveMethod, thresholdType, blockSize, constantValue);
 
-            //instantiating an empty MatOfByte class
+            // instantiating an empty MatOfByte class
             MatOfByte matOfByte = new MatOfByte();
-            //Converting the Mat object to MatOfByte
+            // Converting the Mat object to MatOfByte
             Imgcodecs.imencode(".jpg", dst, matOfByte);
             byteArray = matOfByte.toArray();
         } catch (Exception e) {
@@ -439,9 +444,9 @@ public class CVCore {
             // copyMakeBorder operation
             Core.copyMakeBorder(src, dst, top, bottom, left, right, borderType);
 
-            //instantiating an empty MatOfByte class
+            // instantiating an empty MatOfByte class
             MatOfByte matOfByte = new MatOfByte();
-            //Converting the Mat object to MatOfByte
+            // Converting the Mat object to MatOfByte
             Imgcodecs.imencode(".jpg", dst, matOfByte);
             byteArray = matOfByte.toArray();
         } catch (Exception e) {
@@ -461,9 +466,9 @@ public class CVCore {
             // Sobel operation
             Imgproc.Sobel(src, dst, depth, dx, dy);
 
-            //instantiating an empty MatOfByte class
+            // instantiating an empty MatOfByte class
             MatOfByte matOfByte = new MatOfByte();
-            //Converting the Mat object to MatOfByte
+            // Converting the Mat object to MatOfByte
             Imgcodecs.imencode(".jpg", dst, matOfByte);
             byteArray = matOfByte.toArray();
         } catch (Exception e) {
@@ -483,9 +488,9 @@ public class CVCore {
             // Scharr operation
             Imgproc.Scharr(src, dst, depth, dx, dy);
 
-            //instantiating an empty MatOfByte class
+            // instantiating an empty MatOfByte class
             MatOfByte matOfByte = new MatOfByte();
-            //Converting the Mat object to MatOfByte
+            // Converting the Mat object to MatOfByte
             Imgcodecs.imencode(".jpg", dst, matOfByte);
             byteArray = matOfByte.toArray();
         } catch (Exception e) {
@@ -505,9 +510,9 @@ public class CVCore {
             // Laplacian operation
             Imgproc.Laplacian(src, dst, depth);
 
-            //instantiating an empty MatOfByte class
+            // instantiating an empty MatOfByte class
             MatOfByte matOfByte = new MatOfByte();
-            //Converting the Mat object to MatOfByte
+            // Converting the Mat object to MatOfByte
             Imgcodecs.imencode(".jpg", dst, matOfByte);
             byteArray = matOfByte.toArray();
         } catch (Exception e) {
@@ -527,9 +532,9 @@ public class CVCore {
             // distanceTransform operation
             Imgproc.distanceTransform(src, dst, distanceType, maskSize);
 
-            //instantiating an empty MatOfByte class
+            // instantiating an empty MatOfByte class
             MatOfByte matOfByte = new MatOfByte();
-            //Converting the Mat object to MatOfByte
+            // Converting the Mat object to MatOfByte
             Imgcodecs.imencode(".jpg", dst, matOfByte);
             byteArray = matOfByte.toArray();
         } catch (Exception e) {
@@ -552,9 +557,9 @@ public class CVCore {
             // resize operation
             Imgproc.resize(src, dst, size, fx, fy, interpolation);
 
-            //instantiating an empty MatOfByte class
+            // instantiating an empty MatOfByte class
             MatOfByte matOfByte = new MatOfByte();
-            //Converting the Mat object to MatOfByte
+            // Converting the Mat object to MatOfByte
             Imgcodecs.imencode(".jpg", dst, matOfByte);
             byteArray = matOfByte.toArray();
         } catch (Exception e) {
@@ -574,9 +579,9 @@ public class CVCore {
             // resize operation
             Imgproc.applyColorMap(src, dst, colorMap);
 
-            //instantiating an empty MatOfByte class
+            // instantiating an empty MatOfByte class
             MatOfByte matOfByte = new MatOfByte();
-            //Converting the Mat object to MatOfByte
+            // Converting the Mat object to MatOfByte
             Imgcodecs.imencode(".jpg", dst, matOfByte);
             byteArray = matOfByte.toArray();
         } catch (Exception e) {
@@ -596,9 +601,9 @@ public class CVCore {
             // resize operation
             Imgproc.Canny(src, dst, threshold1, threshold2);
 
-            //instantiating an empty MatOfByte class
+            // instantiating an empty MatOfByte class
             MatOfByte matOfByte = new MatOfByte();
-            //Converting the Mat object to MatOfByte
+            // Converting the Mat object to MatOfByte
             Imgcodecs.imencode(".jpg", dst, matOfByte);
             byteArray = matOfByte.toArray();
         } catch (Exception e) {
@@ -608,18 +613,90 @@ public class CVCore {
     }
 
     @SuppressLint("MissingPermission")
-    public byte[] houghCircles(byte[] byteData, int method, double dp, double minDist, double param1, double param2, int minRadius, int maxRadius, int centerWidth, String centerColor, int circleWidth, String circleColor) {
+    public byte[] houghLines(byte[] byteData, double rho, double theta, int threshold, double srn, double stn,
+            double minTheta, double maxTheta, String lineColor, int lineThickness, int lineType, int shift) {
+        byte[] byteArray = new byte[0];
+        try {
+            Mat cdst = new Mat();
+            // Decode image from input byte array
+            Mat src = Imgcodecs.imdecode(new MatOfByte(byteData), Imgcodecs.IMREAD_UNCHANGED);
+            // Check if image is loaded fine
+            // Copy edges to the images that will display the results in BGR
+            Imgproc.cvtColor(src, cdst, Imgproc.COLOR_GRAY2BGR);
+
+            // Standard Hough Line Transform
+            Mat lines = new Mat(); // will hold the results of the detection
+            Imgproc.HoughLines(src, lines, rho, theta, threshold, srn, stn, minTheta, maxTheta); // runs the actual
+                                                                                                 // detection
+            System.out.println("lines: " + lines);
+            // Draw the lines
+            for (int x = 0; x < lines.rows(); x++) {
+                double rho2 = lines.get(x, 0)[0], theta2 = lines.get(x, 0)[1];
+                double a = Math.cos(theta2), b = Math.sin(theta2);
+                double x0 = a * rho2, y0 = b * rho2;
+                Point pt1 = new Point(Math.round(x0 + 1000 * (-b)), Math.round(y0 + 1000 * (a)));
+                Point pt2 = new Point(Math.round(x0 - 1000 * (-b)), Math.round(y0 - 1000 * (a)));
+                Imgproc.line(cdst, pt1, pt2, convertColorToScalar(lineColor), lineThickness, lineType, shift);
+            }
+            // instantiating an empty MatOfByte class
+            MatOfByte matOfByte = new MatOfByte();
+            // Converting the Mat object to MatOfByte
+            Imgcodecs.imencode(".jpg", cdst, matOfByte);
+            byteArray = matOfByte.toArray();
+        } catch (Exception e) {
+            System.out.println("OpenCV Error: " + e.toString());
+        }
+        return byteArray;
+    }
+
+    @SuppressLint("MissingPermission")
+    public byte[] houghLinesProbabilistic(byte[] byteData, double rho, double theta, int threshold,
+            double minLineLength, double maxLineGap, String lineColor, int lineThickness, int lineType, int shift) {
+        byte[] byteArray = new byte[0];
+        try {
+            Mat cdst = new Mat();
+            // Decode image from input byte array
+            Mat src = Imgcodecs.imdecode(new MatOfByte(byteData), Imgcodecs.IMREAD_UNCHANGED);
+            // Check if image is loaded fine
+            // Copy edges to the images that will display the results in BGR
+            Imgproc.cvtColor(src, cdst, Imgproc.COLOR_GRAY2BGR);
+
+            // Probabilistic Line Transform
+            Mat linesP = new Mat(); // will hold the results of the detection
+            Imgproc.HoughLinesP(src, linesP, rho, theta, threshold, minLineLength, maxLineGap); // runs the actual
+                                                                                                // detection
+            // Draw the lines
+            for (int x = 0; x < linesP.rows(); x++) {
+                double[] l = linesP.get(x, 0);
+                Imgproc.line(cdst, new Point(l[0], l[1]), new Point(l[2], l[3]), convertColorToScalar(lineColor),
+                        lineThickness, lineType, shift);
+            }
+
+            // instantiating an empty MatOfByte class
+            MatOfByte matOfByte = new MatOfByte();
+            // Converting the Mat object to MatOfByte
+            Imgcodecs.imencode(".jpg", cdst, matOfByte);
+            byteArray = matOfByte.toArray();
+        } catch (Exception e) {
+            System.out.println("OpenCV Error: " + e.toString());
+        }
+        return byteArray;
+    }
+
+    @SuppressLint("MissingPermission")
+    public byte[] houghCircles(byte[] byteData, int method, double dp, double minDist, double param1, double param2,
+            int minRadius, int maxRadius, int centerWidth, String centerColor, int circleWidth, String circleColor) {
         byte[] byteArray = new byte[0];
         try {
             Mat circles = new Mat();
             // Decode image from input byte array
             Mat input = Imgcodecs.imdecode(new MatOfByte(byteData), Imgcodecs.IMREAD_UNCHANGED);
-            //Imgproc.medianBlur(input, input, 5);
+            // Imgproc.medianBlur(input, input, 5);
             // resize operation
             Imgproc.HoughCircles(input, circles, method, dp, minDist, param1, param2, minRadius, maxRadius);
 
             if (circles.cols() > 0) {
-                for (int x=0; x < (circles.cols()); x++ ) {
+                for (int x = 0; x < (circles.cols()); x++) {
                     double circleVec[] = circles.get(0, x);
 
                     if (circleVec == null) {
@@ -628,23 +705,62 @@ public class CVCore {
 
                     Point center = new Point((int) circleVec[0], (int) circleVec[1]);
                     int radius = (int) circleVec[2];
-                    System.out.println("centerColor: " + centerColor);
-                    System.out.println("circleColor: " + circleColor);
 
-                    Imgproc.circle(input, center, 3, new Scalar(Integer.valueOf(centerColor.substring( 1, 3 ), 16 ), Integer.valueOf(centerColor.substring( 3, 5 ), 16 ), Integer.valueOf(centerColor.substring( 5, 7 ), 16 )), centerWidth);
-                    Imgproc.circle(input, center, radius, new Scalar(Integer.valueOf(circleColor.substring( 1, 3 ), 16 ), Integer.valueOf(circleColor.substring( 3, 5 ), 16 ), Integer.valueOf(circleColor.substring( 5, 7 ), 16 )), circleWidth);
-                    System.out.println(x+"th circle");
+                    Imgproc.circle(input, center, 3, convertColorToScalar(centerColor), centerWidth);
+                    Imgproc.circle(input, center, radius, convertColorToScalar(circleColor), circleWidth);
                 }
             }
-            //instantiating an empty MatOfByte class
+            // instantiating an empty MatOfByte class
             MatOfByte matOfByte = new MatOfByte();
-            //Converting the Mat object to MatOfByte
+            // Converting the Mat object to MatOfByte
             Imgcodecs.imencode(".jpg", input, matOfByte);
             byteArray = matOfByte.toArray();
-//            System.out.println("OUT: " + dst);
+            // System.out.println("OUT: " + dst);
         } catch (Exception e) {
             System.out.println("OpenCV Error: " + e.toString());
         }
         return byteArray;
+    }
+
+    @SuppressLint("MissingPermission")
+    public byte[] warpPerspectiveTransform(byte[] byteData, ArrayList sourcePoints, ArrayList destinationPoints, ArrayList outputSize) {
+        byte[] byteArray = new byte[0];
+        try {
+            // Decode image from input byte array
+            List<Double> s = new ArrayList<>();
+            List<Double> t = new ArrayList<>();
+            for(int i = 0; i<sourcePoints.size(); i++) {
+                s.add((double) ((Integer) sourcePoints.get(i)));
+            }
+            for(int i = 0; i<destinationPoints.size(); i++) {
+                t.add((double) ((Integer) destinationPoints.get(i)));
+            }
+            Mat input = Imgcodecs.imdecode(new MatOfByte(byteData), Imgcodecs.IMREAD_UNCHANGED);
+            MatOfPoint2f src = new MatOfPoint2f(new Point(s.get(0), s.get(1)),
+            new Point(s.get(2), s.get(3)), new Point(s.get(4), s.get(5)),
+            new Point(s.get(6), s.get(7)));
+            MatOfPoint2f dst = new MatOfPoint2f(new Point(t.get(0), t.get(1)),
+                    new Point(t.get(2), t.get(3)), new Point(t.get(4), t.get(5)),
+                    new Point(t.get(6), t.get(7)));
+            Mat warpMat = Imgproc.getPerspectiveTransform(src, dst);
+            // This is you new image as Mat
+            Mat destImage = new Mat();
+            Imgproc.warpPerspective(input, destImage, warpMat, new Size((double) outputSize.get(0), (double) outputSize.get(1)));
+            // instantiating an empty MatOfByte class
+            MatOfByte matOfByte = new MatOfByte();
+            // Converting the Mat object to MatOfByte
+            Imgcodecs.imencode(".jpg", destImage, matOfByte);
+            byteArray = matOfByte.toArray();
+            // System.out.println("OUT: " + dst);
+        } catch (Exception e) {
+            System.out.println("OpenCV Error: " + e.toString());
+        }
+        return byteArray;
+    }
+
+    @SuppressLint("MissingPermission")
+    public Scalar convertColorToScalar(String color) {
+        return new Scalar(Integer.valueOf(color.substring(1, 3), 16), Integer.valueOf(color.substring(3, 5), 16),
+                Integer.valueOf(color.substring(5, 7), 16));
     }
 }

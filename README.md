@@ -84,6 +84,9 @@ Since you're never going to just implement one function, there's a need to be ab
 ### Why not do a full binding?
 I am actually planning to write a full binding and publish it separately later on. I understand that this implementation is lackluster & a lot of functions still need to be added. If you really need something, make a feature request.
 
+### Why not use dart:ffi?
+I've read up a few bad things about performance benchmarking in ffi, [refer] (https://news.ycombinator.com/item?id=17219291). Due to lack of a better option & the simplicity of method channels, I chose not to go with dart:ffi. Maybe, in the future, someone would build the project on dart:ffi instead of Java/Swift bindings & make it work exactly like OpenCV does. If I ever get the time or resources, I'll start another project in the name of "opencv_advanced".
+
 ### Why not use the core OpenCV classes like Mat?
 Because I wanted to provide a simple interface - one that does not require the user to learn OpenCV or it's API. Instead, much of the way the library works is designed around Flutter/Dart, making it easier for Flutter users to pick it up.
 

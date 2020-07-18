@@ -1,3 +1,4 @@
+/// Helper Size class with width & height doubles
 class Size {
   double x;
   double y;
@@ -7,6 +8,7 @@ class Size {
   }
 }
 
+/// Helper Point class with x & y axis doubles
 class Point {
   double x;
   double y;
