@@ -1,3 +1,11 @@
+/*
+ * flutter_opencv
+ * https://mulgundkar.com
+ * 
+ * Copyright (c) 2020 Aditya Mulgundkar. All rights reserved.
+ * See LICENSE for more details.
+ */
+
 import 'dart:async';
 
 import 'package:flutter/services.dart';

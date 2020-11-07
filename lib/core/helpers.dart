@@ -1,3 +1,11 @@
+/*
+ * flutter_opencv
+ * https://mulgundkar.com
+ * 
+ * Copyright (c) 2020 Aditya Mulgundkar. All rights reserved.
+ * See LICENSE for more details.
+ */
+
 /// Helper Size class with width & height doubles
 class Size {
   double x;

@@ -18,3 +18,5 @@ android/.project
 android/.classpath
 .idea/workspace.xml
 .idea/libraries/Flutter_Plugins.xml
+pubspec.lock
+.idea/workspace.xml
