@@ -938,7 +938,9 @@ class ImgProc {
   ///   sourcePoints = [P1.x, P1.y, P2.x, P2.y, P3.x, P3.y, P4.x, P4.y]
   ///   similarly for destinationPoints as well
   static Future<dynamic> warpPerspectiveTransform(Uint8List byteData,
-      {@required List sourcePoints, @required List destinationPoints, @required List<double> outputSize}) async {
+      {@required List sourcePoints,
+      @required List destinationPoints,
+      @required List<double> outputSize}) async {
     /// Variable to store operation result
     final dynamic result =
         await _channel.invokeMethod('warpPerspectiveTransform', {
@@ -949,6 +951,15 @@ class ImgProc {
     });
 
     /// Function returns the response from method channel
+    return result;
+  }
+
+  static Future<dynamic> grabCut(Uint8List byteData, {int px = 0, int py = 0, int qx = 0, int qy = 0, int itercount = 1, int mode = 0}) async {
+    /// Variable to store operation result
+    final dynamic result = await _channel.invokeMethod(
+        'grabCut', {'byteData': byteData, 'px': px, 'py': py, 'qx': qx, 'qy': qy, 'itercount': itercount, 'mode': mode});
+
+    /// Function returns the set String as result, use for debugging
     return result;
   }
 }

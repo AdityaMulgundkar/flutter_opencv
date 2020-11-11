@@ -186,6 +186,9 @@ public class OpenCV4Plugin implements FlutterPlugin, MethodCallHandler {
                         (int) call.argument("centerWidth"), (String) call.argument("centerColor"),
                         (int) call.argument("circleWidth"), (String) call.argument("circleColor")));
                 break;
+            case "grabCut":
+                result.success(core.grabCut((byte[]) call.argument("byteData"), (int) call.argument("px"), (int) call.argument("py"), (int) call.argument("qx"), (int) call.argument("qy"), (int) call.argument("itercount"), (int) call.argument("mode")));
+                break;
             case "warpPerspectiveTransform":
                 result.success(core.warpPerspectiveTransform((byte[]) call.argument("byteData"),
                         (ArrayList) call.argument("sourcePoints"), (ArrayList) call.argument("destinationPoints"), (ArrayList) call.argument("outputSize") ));

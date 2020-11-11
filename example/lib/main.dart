@@ -197,17 +197,21 @@ class _MyAppState extends State<MyApp> {
               maxRadius: 0);
           break;
         case 'warpPerspectiveTransform':
-        // 4 points are represented as:
-        // P1         P2
-        //
-        //
-        // P3         P4
-        // and stored in a linear array as:
-        // sourcePoints = [P1.x, P1.y, P2.x, P2.y, P3.x, P3.y, P4.x, P4.y]
+          // 4 points are represented as:
+          // P1         P2
+          //
+          //
+          // P3         P4
+          // and stored in a linear array as:
+          // sourcePoints = [P1.x, P1.y, P2.x, P2.y, P3.x, P3.y, P4.x, P4.y]
           res = await ImgProc.warpPerspectiveTransform(await file.readAsBytes(),
               sourcePoints: [113, 137, 260, 137, 138, 379, 271, 340],
               destinationPoints: [0, 0, 612, 0, 0, 459, 612, 459],
               outputSize: [612, 459]);
+          break;
+        case 'grabCut':
+          res = await ImgProc.grabCut(await file.readAsBytes(),
+              px: 0, py: 0, qx: 400, qy: 400, itercount: 1);
           break;
         default:
           print("No function selected");
@@ -291,7 +295,8 @@ class _MyAppState extends State<MyApp> {
                       'houghLines',
                       'houghLinesProbabilistic',
                       'houghCircles',
-                      'warpPerspectiveTransform'
+                      'warpPerspectiveTransform',
+                      'grabCut'
                     ].map<DropdownMenuItem<String>>((String value) {
                       return DropdownMenuItem<String>(
                         value: value,
