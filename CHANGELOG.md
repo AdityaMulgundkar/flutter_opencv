@@ -1,3 +1,9 @@
+## 1.0.3
+
+* Fixed issue #5 - added HoughLines & HoughLinesProbabilistic
+* Fixed issue #8 (closing PR #7) - added grabCut
+* Fixed issue #10 - added warpPerspectiveTransform
+
 ## 1.0.2
 
 * All variables confirmed to lowerCamelCase format in ImgProc & Core.

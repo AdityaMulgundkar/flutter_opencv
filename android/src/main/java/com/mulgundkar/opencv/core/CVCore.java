@@ -7,6 +7,7 @@ import org.opencv.core.Core;
 import org.opencv.core.CvType;
 import org.opencv.core.Mat;
 import org.opencv.core.Point;
+import org.opencv.core.Rect;
 import org.opencv.core.Scalar;
 import org.opencv.core.Size;
 import org.opencv.core.MatOfByte;
@@ -715,7 +716,6 @@ public class CVCore {
             // Converting the Mat object to MatOfByte
             Imgcodecs.imencode(".jpg", input, matOfByte);
             byteArray = matOfByte.toArray();
-            // System.out.println("OUT: " + dst);
         } catch (Exception e) {
             System.out.println("OpenCV Error: " + e.toString());
         }
@@ -751,7 +751,38 @@ public class CVCore {
             // Converting the Mat object to MatOfByte
             Imgcodecs.imencode(".jpg", destImage, matOfByte);
             byteArray = matOfByte.toArray();
-            // System.out.println("OUT: " + dst);
+        } catch (Exception e) {
+            System.out.println("OpenCV Error: " + e.toString());
+        }
+        return byteArray;
+    }
+
+    @SuppressLint("MissingPermission")
+    public byte[] grabCut(byte[] byteData, int px, int py, int qx, int qy, int itercount, int mode) {
+        byte[] byteArray = new byte[0];
+        try {
+            // Decode image from input byte array
+            Mat dst = new Mat();
+            Mat background = new Mat();
+            Mat foreground = new Mat();
+
+            Mat src = Imgcodecs.imdecode(new MatOfByte(byteData), Imgcodecs.IMREAD_UNCHANGED);
+
+            Rect rect = new Rect(px, px, qx, qy);
+
+            Imgproc.grabCut(src, dst, rect, background, foreground, itercount, mode);  //0 = start with a rectangle
+
+            Mat source = new Mat(1, 1, CvType.CV_8U, new Scalar(3.0));
+            Core.compare(dst, source, dst, Core.CMP_EQ);
+        
+            Mat foreground2 = new Mat(src.size(), CvType.CV_8UC3, new Scalar(255,
+                    255, 255,255));
+            src.copyTo(foreground2, dst);
+
+            MatOfByte matOfByte = new MatOfByte();
+            //Converting the Mat object to MatOfByte
+            Imgcodecs.imencode(".jpg", foreground2, matOfByte);
+            byteArray = matOfByte.toArray();
         } catch (Exception e) {
             System.out.println("OpenCV Error: " + e.toString());
         }

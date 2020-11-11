@@ -1,6 +1,6 @@
 <img align="right" width="100" height="100" src="flutter_opencv.png">
 
-# flutter_opencv
+# flutter_opencv <!-- omit in toc -->
 
 A Flutter™ plug-in providing a binding to OpenCV-4.x.
 
@@ -13,6 +13,34 @@ A Flutter™ plug-in providing a binding to OpenCV-4.x.
 
 [![Flutter OpenCV](https://media.giphy.com/media/M9UOQmSYQrWgOkYqO8/giphy.gif)](https://pub.dartlang.org/packages/opencv)
 
+
+## Table of Contents <!-- omit in toc -->
+- [Usage](#usage)
+  - [Installation](#installation)
+  - [Examples](#examples)
+    - [Core concepts](#core-concepts)
+    - [Basic usage](#basic-usage)
+    - [Input images & formats](#input-images--formats)
+    - [Storing result, temporarily](#storing-result-temporarily)
+    - [Output images & formats](#output-images--formats)
+    - [Cascading functions/effects](#cascading-functionseffects)
+- [FAQs related to the idea/concept behind this plug-in](#faqs-related-to-the-ideaconcept-behind-this-plug-in)
+  - [Why not do a full binding?](#why-not-do-a-full-binding)
+  - [Why not use dart:ffi?](#why-not-use-dartffi)
+  - [Why not use the core OpenCV classes like Mat?](#why-not-use-the-core-opencv-classes-like-mat)
+  - [Does lesser functions (in comparison to a full binding) mean lower build size?](#does-lesser-functions-in-comparison-to-a-full-binding-mean-lower-build-size)
+  - [Benchmarks?](#benchmarks)
+  - [What OpenCV version is flutter_opencv built on top of?](#what-opencv-version-is-flutter_opencv-built-on-top-of)
+- [Notes](#notes)
+- [Todos](#todos)
+- [Changelog](#changelog)
+- [Contributions](#contributions)
+- [Sponsors](#sponsors)
+- [As featured in:](#as-featured-in)
+- [Built with flutter_opencv](#built-with-flutter_opencv)
+- [Trademarks](#trademarks)
+- [Copyright(s)](#copyrights)
+
 ## Usage
 
 ### Installation
@@ -22,7 +50,7 @@ In the `pubspec.yaml` of your flutter project, add the following dependency:
 ```yaml
 dependencies:
   ...
-  opencv: "^1.0.2"
+  opencv: "^1.0.3"
 ```
 
 In your library add the following import:
@@ -136,6 +164,9 @@ If you fixed a bug or implemented a feature, please send a [pull request](https:
 - (19th April, 2020) FlutterForce — #Week 73 - https://medium.com/flutterforce/flutterforce-week-73-1da09cbb1b72
 - (20th April, 2020) FlutterTap — Issue 35 - https://fluttertap.com/issue-35/
 
+## Built with flutter_opencv
+- [ScanIT](https://play.google.com/store/apps/details?id=com.pmd.SCANit) Some undergraduate students built this & sent the link across to me. Considering the current flaky build of this plug-in, A+ for the effort.
+- [Make a PR](https://github.com/AdityaMulgundkar/flutter_opencv/compare) if you want to list something you made with flutter_opencv.
 
 ## Trademarks
 “Flutter and the related logo are trademarks of Google LLC. We are not endorsed by or affiliated with Google LLC.”
@@ -145,7 +176,7 @@ License Agreement
 For Open Source Computer Vision Library
 (3-clause BSD License)  
 
-Copyright (C) 2020, Aditya Mulgundkar  
+Copyright (C) 2020, Aditya Mulgundkar, all rights reserved.  
 Copyright (C) 2000-2019, Intel Corporation, all rights reserved.  
 Copyright (C) 2009-2011, Willow Garage Inc., all rights reserved.  
 Copyright (C) 2009-2016, NVIDIA Corporation, all rights reserved.  
