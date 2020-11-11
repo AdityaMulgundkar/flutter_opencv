@@ -1,3 +1,6 @@
+## 1.0.4
+* Readme bugfix
+
 ## 1.0.3
 
 * Fixed issue #5 - added HoughLines & HoughLinesProbabilistic

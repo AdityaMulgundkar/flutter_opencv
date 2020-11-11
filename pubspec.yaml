@@ -1,6 +1,6 @@
 name: opencv
 description: Flutter plug-in providing (a few) basic bindings to OpenCV-4.x. OpenCV methods implemented without the Core packages. WIP.
-version: 1.0.3
+version: 1.0.4
 homepage: https://github.com/AdityaMulgundkar/flutter_opencv
 
 environment:
@@ -8,7 +8,7 @@ environment:
   # Flutter versions prior to 1.12 did not support the
   # flutter.plugin.platforms map.
   flutter: ">=1.12.0 <2.0.0"
-  
+
 dependencies:
   flutter:
     sdk: flutter

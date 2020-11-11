@@ -1,6 +1,6 @@
 <img align="right" width="100" height="100" src="flutter_opencv.png">
 
-# flutter_opencv <!-- omit in toc -->
+# flutter_opencv
 
 A Flutter™ plug-in providing a binding to OpenCV-4.x.
 
@@ -14,7 +14,7 @@ A Flutter™ plug-in providing a binding to OpenCV-4.x.
 [![Flutter OpenCV](https://media.giphy.com/media/M9UOQmSYQrWgOkYqO8/giphy.gif)](https://pub.dartlang.org/packages/opencv)
 
 
-## Table of Contents <!-- omit in toc -->
+## Table of Contents
 - [Usage](#usage)
   - [Installation](#installation)
   - [Examples](#examples)
@@ -50,7 +50,7 @@ In the `pubspec.yaml` of your flutter project, add the following dependency:
 ```yaml
 dependencies:
   ...
-  opencv: "^1.0.3"
+  opencv: "^1.0.4"
 ```
 
 In your library add the following import:
