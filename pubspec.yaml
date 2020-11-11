@@ -16,5 +16,7 @@ dev_dependencies:
 
 flutter:
   plugin:
-    androidPackage: com.mulgundkar.opencv
-    pluginClass: OpenCV4Plugin
+    platforms:
+      android:
+        package: com.mulgundkar.opencv
+        pluginClass: OpenCV4Plugin
