@@ -20,3 +20,5 @@ android/.classpath
 .idea/libraries/Flutter_Plugins.xml
 pubspec.lock
 .idea/workspace.xml
+example/pubspec.lock
+pubspec.lock
