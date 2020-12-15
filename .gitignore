@@ -22,3 +22,4 @@ pubspec.lock
 .idea/workspace.xml
 example/pubspec.lock
 pubspec.lock
+*.lock

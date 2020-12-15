@@ -745,7 +745,7 @@ public class CVCore {
             Mat warpMat = Imgproc.getPerspectiveTransform(src, dst);
             // This is you new image as Mat
             Mat destImage = new Mat();
-            Imgproc.warpPerspective(input, destImage, warpMat, new Size((double) outputSize.get(0), (double) outputSize.get(1)));
+            Imgproc.warpPerspective(input, destImage, warpMat, new Size(outputSize.get(0).doubleValue(), outputSize.get(1).doubleValue()));
             // instantiating an empty MatOfByte class
             MatOfByte matOfByte = new MatOfByte();
             // Converting the Mat object to MatOfByte

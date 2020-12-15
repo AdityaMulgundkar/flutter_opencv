@@ -204,10 +204,11 @@ class _MyAppState extends State<MyApp> {
           // P3         P4
           // and stored in a linear array as:
           // sourcePoints = [P1.x, P1.y, P2.x, P2.y, P3.x, P3.y, P4.x, P4.y]
+          List<double> size = [612.0, 459.0];
           res = await ImgProc.warpPerspectiveTransform(await file.readAsBytes(),
               sourcePoints: [113, 137, 260, 137, 138, 379, 271, 340],
               destinationPoints: [0, 0, 612, 0, 0, 459, 612, 459],
-              outputSize: [612, 459]);
+              outputSize: size);
           break;
         case 'grabCut':
           res = await ImgProc.grabCut(await file.readAsBytes(),
