@@ -42,6 +42,7 @@ class _MyAppState extends State<MyApp> {
   ];
   int urlIndex = 0;
   String dropdownValue = 'None';
+  List<String> circlesTriplet=[];
 
   @override
   void initState() {
@@ -192,7 +193,9 @@ class _MyAppState extends State<MyApp> {
               param1: 150,
               param2: 100,
               minRadius: 0,
-              maxRadius: 0);
+              maxRadius: 0,
+              circlesTriplet: []);
+          print(circlesTriplet.last);    
           break;
         case 'warpPerspectiveTransform':
           // 4 points are represented as:

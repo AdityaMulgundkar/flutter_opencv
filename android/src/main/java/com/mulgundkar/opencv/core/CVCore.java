@@ -686,7 +686,7 @@ public class CVCore {
 
     @SuppressLint("MissingPermission")
     public byte[] houghCircles(byte[] byteData, int method, double dp, double minDist, double param1, double param2,
-            int minRadius, int maxRadius, int centerWidth, String centerColor, int circleWidth, String circleColor) {
+            int minRadius, int maxRadius, int centerWidth, String centerColor, int circleWidth, String circleColor, ArrayList circlesTriplet) {
         byte[] byteArray = new byte[0];
         try {
             Mat circles = new Mat();
@@ -706,6 +706,7 @@ public class CVCore {
 
                     Point center = new Point((int) circleVec[0], (int) circleVec[1]);
                     int radius = (int) circleVec[2];
+                    circlesTriplet.add((int) circleVec[0], (int) circleVec[1],(int) circleVec[2]);
 
                     Imgproc.circle(input, center, 3, convertColorToScalar(centerColor), centerWidth);
                     Imgproc.circle(input, center, radius, convertColorToScalar(circleColor), circleWidth);

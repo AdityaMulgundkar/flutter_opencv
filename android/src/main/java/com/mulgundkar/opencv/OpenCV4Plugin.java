@@ -183,6 +183,7 @@ public class OpenCV4Plugin implements FlutterPlugin, MethodCallHandler {
                         (double) call.argument("dp"), (double) call.argument("minDist"),
                         (double) call.argument("param1"), (double) call.argument("param2"),
                         (int) call.argument("minRadius"), (int) call.argument("maxRadius"),
+                        (ArrayList) call.argument("circlesTriplet"),
                         (int) call.argument("centerWidth"), (String) call.argument("centerColor"),
                         (int) call.argument("circleWidth"), (String) call.argument("circleColor")));
                 break;
