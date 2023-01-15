@@ -28,7 +28,7 @@ class _MyAppState extends State<MyApp> {
   dynamic res;
   Image image = Image.asset('assets/temp.png');
   Image imageNew = Image.asset('assets/temp.png');
-  File file;
+  late File file;
   bool preloaded = false;
   bool loaded = false;
 
@@ -94,8 +94,7 @@ class _MyAppState extends State<MyApp> {
               await file.readAsBytes(), [45, 45], [20, 30], Core.borderReflect);
           break;
         case 'GaussianBlur':
-          res =
-              await ImgProc.gaussianBlur(await file.readAsBytes(), [45, 45], 0);
+          res = await ImgProc.gaussianBlur(await file.readAsBytes(), [45, 45], 0);
           break;
         case 'medianBlur':
           res = await ImgProc.medianBlur(await file.readAsBytes(), 45);
@@ -109,8 +108,7 @@ class _MyAppState extends State<MyApp> {
               [-1, -1], true, Core.borderConstant);
           break;
         case 'sqrBoxFilter':
-          res =
-              await ImgProc.sqrBoxFilter(await file.readAsBytes(), -1, [1, 1]);
+          res = await ImgProc.sqrBoxFilter(await file.readAsBytes(), -1, [1, 1]);
           break;
         case 'filter2D':
           res = await ImgProc.filter2D(await file.readAsBytes(), -1, [2, 2]);
@@ -263,9 +261,9 @@ class _MyAppState extends State<MyApp> {
                       color: Colors.grey,
                       height: 2,
                     ),
-                    onChanged: (String newValue) {
+                    onChanged: (String? newValue) {
                       setState(() {
-                        dropdownValue = newValue;
+                        dropdownValue = newValue!;
                       });
                     },
                     items: <String>[
@@ -304,8 +302,9 @@ class _MyAppState extends State<MyApp> {
                       );
                     }).toList(),
                   ),
-                  RaisedButton(
-                    onPressed: () {
+                  //RaisedButton(
+                  ElevatedButton(
+                      onPressed: () {
                       runAFunction(dropdownValue);
                     },
                     child: Text('Run'),
