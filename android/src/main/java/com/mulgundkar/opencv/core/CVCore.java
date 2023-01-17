@@ -706,7 +706,11 @@ public class CVCore {
 
                     Point center = new Point((int) circleVec[0], (int) circleVec[1]);
                     int radius = (int) circleVec[2];
-                    circlesTriplet.add((int) circleVec[0], (int) circleVec[1],(int) circleVec[2]);
+                    circlesTriplet.add( circleVec[0]);
+                    circlesTriplet.add( circleVec[1]);
+                    circlesTriplet.add( circleVec[2]);
+System.out.println("circlesTriplet: 0:" + circleVec[0] + " 1:" + circleVec[1] + " 2:" + circleVec[2]);
+
 
                     Imgproc.circle(input, center, 3, convertColorToScalar(centerColor), centerWidth);
                     Imgproc.circle(input, center, radius, convertColorToScalar(circleColor), circleWidth);

@@ -195,7 +195,9 @@ class _MyAppState extends State<MyApp> {
               minRadius: 0,
               maxRadius: 0,
               circlesTriplet: []);
-          print(circlesTriplet.last);    
+          for(var element in circlesTriplet){
+            print("circle element" + element!);
+          } 
           break;
         case 'warpPerspectiveTransform':
           // 4 points are represented as:
