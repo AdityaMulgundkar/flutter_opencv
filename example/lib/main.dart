@@ -42,7 +42,6 @@ class _MyAppState extends State<MyApp> {
   ];
   int urlIndex = 0;
   String dropdownValue = 'None';
-  List<String> circlesTriplet=[];
 
   @override
   void initState() {
@@ -187,17 +186,26 @@ class _MyAppState extends State<MyApp> {
         case 'houghCircles':
           res = await ImgProc.cvtColor(await file.readAsBytes(), 6);
           res = await ImgProc.houghCircles(await res,
+            method: 3,
+              dp: 2.1,
+              minDist: 0.1,
+              param1: 150,
+              param2: 100,
+              minRadius: 0,
+              maxRadius: 0             );
+          List circlesTriplet = await ImgProc.houghCirclesCoordinates(await res,
               method: 3,
               dp: 2.1,
               minDist: 0.1,
               param1: 150,
               param2: 100,
               minRadius: 0,
-              maxRadius: 0,
-              circlesTriplet: []);
-          for(var element in circlesTriplet){
-            print("circle element" + element!);
-          } 
+              maxRadius: 0             );
+          /*print('there are ${circlesTriplet.length} ');
+
+          for(double element in circlesTriplet){
+            print("circle element " + element.toString() );
+          }*/
           break;
         case 'warpPerspectiveTransform':
           // 4 points are represented as:
@@ -222,7 +230,7 @@ class _MyAppState extends State<MyApp> {
       }
 
       setState(() {
-        imageNew = Image.memory(res);
+        imageNew = Image.memory(res!);
         loaded = true;
       });
     } on PlatformException {

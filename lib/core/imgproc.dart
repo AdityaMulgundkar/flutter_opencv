@@ -12,6 +12,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
 import 'dart:math' as math;
 
+
 class ImgProc {
   /// Define method channel
   static const MethodChannel _channel = const MethodChannel('opencv');
@@ -895,7 +896,7 @@ class ImgProc {
   }
 
   /// Function takes input file's byte array data, accumulator value dp, min distance value between two circles, method specific parameters 1 & 2,
-  /// min & max radius of the circles, & optional values for the circle center width, center color, circle width, circle color, and circles.
+  /// min & max radius of the circles, & optional values for the circle center width, center color, circle width and circle color.
   static Future<dynamic> houghCircles(Uint8List byteData,
       {required int method,
       required double dp,
@@ -904,7 +905,6 @@ class ImgProc {
       required double param2,
       required int minRadius,
       required int maxRadius,
-      required List circlesTriplet,
       int centerWidth = 2,
       String centerColor = "#ff0000",
       int circleWidth = 2,
@@ -923,7 +923,40 @@ class ImgProc {
       'centerColor': centerColor,
       'circleWidth': circleWidth,
       'circleColor': circleColor,
-      'circlesTriplet': circlesTriplet,
+    });
+
+    /// Function returns the response from method channel
+    return result;
+  }
+
+  /// Function takes input file's byte array data, accumulator value dp, min distance value between two circles, method specific parameters 1 & 2,
+  /// min & max radius of the circles, & optional values for the circle center width, center color, circle width and circle color.
+  static Future<dynamic> houghCirclesCoordinates(Uint8List byteData,
+      {required int method,
+        required double dp,
+        required double minDist,
+        required double param1,
+        required double param2,
+        required int minRadius,
+        required int maxRadius,
+        int centerWidth = 2,
+        String centerColor = "#ff0000",
+        int circleWidth = 2,
+        String circleColor = "#ffffff"}) async {
+    /// Variable to store operation result
+    final dynamic result = await _channel.invokeMethod('houghCirclesCoordinates', {
+      'byteData': byteData,
+      'method': method,
+      'dp': dp,
+      'minDist': minDist,
+      'param1': param1,
+      'param2': param2,
+      'minRadius': minRadius,
+      'maxRadius': maxRadius,
+      'centerWidth': centerWidth,
+      'centerColor': centerColor,
+      'circleWidth': circleWidth,
+      'circleColor': circleColor,
     });
 
     /// Function returns the response from method channel

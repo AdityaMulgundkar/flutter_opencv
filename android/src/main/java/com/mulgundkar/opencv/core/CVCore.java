@@ -686,7 +686,7 @@ public class CVCore {
 
     @SuppressLint("MissingPermission")
     public byte[] houghCircles(byte[] byteData, int method, double dp, double minDist, double param1, double param2,
-            int minRadius, int maxRadius, int centerWidth, String centerColor, int circleWidth, String circleColor, ArrayList circlesTriplet) {
+            int minRadius, int maxRadius, int centerWidth, String centerColor, int circleWidth, String circleColor) {
         byte[] byteArray = new byte[0];
         try {
             Mat circles = new Mat();
@@ -695,7 +695,6 @@ public class CVCore {
             // Imgproc.medianBlur(input, input, 5);
             // resize operation
             Imgproc.HoughCircles(input, circles, method, dp, minDist, param1, param2, minRadius, maxRadius);
-
             if (circles.cols() > 0) {
                 for (int x = 0; x < (circles.cols()); x++) {
                     double circleVec[] = circles.get(0, x);
@@ -706,11 +705,6 @@ public class CVCore {
 
                     Point center = new Point((int) circleVec[0], (int) circleVec[1]);
                     int radius = (int) circleVec[2];
-                    circlesTriplet.add( circleVec[0]);
-                    circlesTriplet.add( circleVec[1]);
-                    circlesTriplet.add( circleVec[2]);
-System.out.println("circlesTriplet: 0:" + circleVec[0] + " 1:" + circleVec[1] + " 2:" + circleVec[2]);
-
 
                     Imgproc.circle(input, center, 3, convertColorToScalar(centerColor), centerWidth);
                     Imgproc.circle(input, center, radius, convertColorToScalar(circleColor), circleWidth);
@@ -725,6 +719,37 @@ System.out.println("circlesTriplet: 0:" + circleVec[0] + " 1:" + circleVec[1] + 
             System.out.println("OpenCV Error: " + e.toString());
         }
         return byteArray;
+    }
+
+    @SuppressLint("MissingPermission")
+    public List<Double> houghCirclesCoordinates(byte[] byteData, int method, double dp, double minDist, double param1, double param2,
+            int minRadius, int maxRadius, int centerWidth, String centerColor, int circleWidth, String circleColor) {
+        byte[] byteArray = new byte[0];
+        List<Double> circlesTriplet = new ArrayList<>();
+        try {
+            Mat circles = new Mat();
+            // Decode image from input byte array
+            Mat input = Imgcodecs.imdecode(new MatOfByte(byteData), Imgcodecs.IMREAD_UNCHANGED);
+            // Imgproc.medianBlur(input, input, 5);
+            // resize operation
+            Imgproc.HoughCircles(input, circles, method, dp, minDist, param1, param2, minRadius, maxRadius);
+            if (circles.cols() > 0) {
+                for (int x = 0; x < (circles.cols()); x++) {
+                    double circleVec[] = circles.get(0, x);
+
+                    if (circleVec == null) {
+                        break;
+                    }
+                    circlesTriplet.add( circleVec[0]);
+                    circlesTriplet.add( circleVec[1]);
+                    circlesTriplet.add( circleVec[2]);
+                    //System.out.println("circlesTriplet: 0:" + circleVec[0] + " 1:" + circleVec[1] + " 2:" + circleVec[2]);
+                }
+            }
+        } catch (Exception e) {
+            System.out.println("OpenCV Error: " + e.toString());
+        }
+        return circlesTriplet;
     }
 
     @SuppressLint("MissingPermission")
