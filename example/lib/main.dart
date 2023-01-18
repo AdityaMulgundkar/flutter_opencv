@@ -28,7 +28,7 @@ class _MyAppState extends State<MyApp> {
   dynamic res;
   Image image = Image.asset('assets/temp.png');
   Image imageNew = Image.asset('assets/temp.png');
-  File file;
+  late File file;
   bool preloaded = false;
   bool loaded = false;
 
@@ -94,8 +94,7 @@ class _MyAppState extends State<MyApp> {
               await file.readAsBytes(), [45, 45], [20, 30], Core.borderReflect);
           break;
         case 'GaussianBlur':
-          res =
-              await ImgProc.gaussianBlur(await file.readAsBytes(), [45, 45], 0);
+          res = await ImgProc.gaussianBlur(await file.readAsBytes(), [45, 45], 0);
           break;
         case 'medianBlur':
           res = await ImgProc.medianBlur(await file.readAsBytes(), 45);
@@ -109,8 +108,7 @@ class _MyAppState extends State<MyApp> {
               [-1, -1], true, Core.borderConstant);
           break;
         case 'sqrBoxFilter':
-          res =
-              await ImgProc.sqrBoxFilter(await file.readAsBytes(), -1, [1, 1]);
+          res = await ImgProc.sqrBoxFilter(await file.readAsBytes(), -1, [1, 1]);
           break;
         case 'filter2D':
           res = await ImgProc.filter2D(await file.readAsBytes(), -1, [2, 2]);
@@ -188,13 +186,26 @@ class _MyAppState extends State<MyApp> {
         case 'houghCircles':
           res = await ImgProc.cvtColor(await file.readAsBytes(), 6);
           res = await ImgProc.houghCircles(await res,
+            method: 3,
+              dp: 2.1,
+              minDist: 0.1,
+              param1: 150,
+              param2: 100,
+              minRadius: 0,
+              maxRadius: 0             );
+          List circlesTriplet = await ImgProc.houghCirclesCoordinates(await res,
               method: 3,
               dp: 2.1,
               minDist: 0.1,
               param1: 150,
               param2: 100,
               minRadius: 0,
-              maxRadius: 0);
+              maxRadius: 0             );
+          /*print('there are ${circlesTriplet.length} ');
+
+          for(double element in circlesTriplet){
+            print("circle element " + element.toString() );
+          }*/
           break;
         case 'warpPerspectiveTransform':
           // 4 points are represented as:
@@ -219,7 +230,7 @@ class _MyAppState extends State<MyApp> {
       }
 
       setState(() {
-        imageNew = Image.memory(res);
+        imageNew = Image.memory(res!);
         loaded = true;
       });
     } on PlatformException {
@@ -263,9 +274,9 @@ class _MyAppState extends State<MyApp> {
                       color: Colors.grey,
                       height: 2,
                     ),
-                    onChanged: (String newValue) {
+                    onChanged: (String? newValue) {
                       setState(() {
-                        dropdownValue = newValue;
+                        dropdownValue = newValue!;
                       });
                     },
                     items: <String>[
@@ -304,8 +315,9 @@ class _MyAppState extends State<MyApp> {
                       );
                     }).toList(),
                   ),
-                  RaisedButton(
-                    onPressed: () {
+                  //RaisedButton(
+                  ElevatedButton(
+                      onPressed: () {
                       runAFunction(dropdownValue);
                     },
                     child: Text('Run'),
